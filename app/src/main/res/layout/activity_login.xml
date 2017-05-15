@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <EditText
+        android:id="@+id/txtEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/txtPassword"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="28dp"
+        android:drawableLeft="@drawable/ic_user"
+        android:ems="16"
+        android:fontFamily="sans-serif"
+        android:hint="  Correo"
+        android:inputType="textEmailAddress"
+        android:textColor="@android:color/black"
+        tools:ignore="UnusedAttribute" />
+
+    <EditText
+        android:id="@+id/txtPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/txtEmail"
+        android:layout_alignStart="@+id/txtEmail"
+        android:layout_centerVertical="true"
+        android:drawableLeft="@drawable/ic_passwd"
+        android:ems="16"
+        android:fontFamily="sans-serif"
+        android:hint="  Contraseña"
+        android:inputType="textPassword"
+        android:textColor="@android:color/background_dark"
+        tools:ignore="HardcodedText,UnusedAttribute" />
+
+    <Button
+        android:id="@+id/btnRegistrar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/txtPassword"
+        android:layout_alignLeft="@+id/txtPassword"
+        android:layout_alignRight="@+id/txtPassword"
+        android:layout_alignStart="@+id/txtPassword"
+        android:layout_below="@+id/txtPassword"
+        android:layout_marginTop="60dp"
+        android:background="@drawable/boton_pulsado"
+        android:ems="16"
+        android:text="Iniciar"
+        android:visibility="visible"
+        tools:ignore="HardcodedText" />
+
+    <TextView
+        android:id="@+id/link_signup"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/btnRegistrar"
+        android:layout_marginTop="22dp"
+        android:gravity="center"
+        android:text="@string/no_tienes_cuenta_a_n_crea_una"
+        android:textSize="16sp" />
+
+    <ImageView
+        android:id="@+id/imagen"
+        android:layout_width="match_parent"
+        android:layout_height="130dp"
+        android:layout_above="@+id/txtEmail"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        app:srcCompat="@mipmap/logo"
+        tools:ignore="ContentDescription" />
+
+</RelativeLayout>
