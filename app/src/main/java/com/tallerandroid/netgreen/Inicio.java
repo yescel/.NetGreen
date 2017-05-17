@@ -6,7 +6,7 @@ import android.widget.ImageView;
  * Created by yesce on 14/05/2017.
  */
 
-public class Inicio {
+public class  Inicio {
     private ImageView imagen;
     private  int idActividad_Noticia;
     private String nomActividad_Noticia;
@@ -18,19 +18,12 @@ public class Inicio {
     private String categoria;
     private char tipo;
 
-    /*
-    public Inicio(ImageView imagen, String nomActividad_Noticia, String descripcionAct_Not, String nomUsuario, String categoria, int cantParticipantes, int cantSeguidores){
-       this.imagen = imagen;
-        this.nomActividad_Noticia = nomActividad_Noticia;
-        this.descripcionAct_Not = descripcionAct_Not;
-        this.nomUsuario = nomUsuario;
-        this.categoria = categoria;
-        this.cantParticipantes = cantParticipantes;
-        this.cantSeguidores = cantSeguidores;
-    }*/
 
     public int getIdActividad_Noticia(){
         return idActividad_Noticia;
+    }
+    public ImageView getImagen() {
+        return imagen;
     }
     public void setImagen(ImageView imagen) {
         this.imagen = imagen;

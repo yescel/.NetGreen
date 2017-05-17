@@ -1,0 +1,125 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    tools:context="com.tallerandroid.netgreen.FragmentCrearAct">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:weightSum="1">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="50dp">
+
+            <TextView
+                android:text="Categoria:"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tvCategoria"
+                android:layout_weight="1"/>
+
+            <Spinner
+                android:layout_width="259dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/spinnerCategorias"
+                android:layout_weight="1.44" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="50dp">
+
+            <TextView
+                android:text="Sub-Categoria:"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tvSubCategoria"
+                android:layout_weight="1"/>
+
+            <Spinner
+                android:layout_width="259dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/spinnerSubCategorias"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:text="Titulo:"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tvNombre"
+                android:layout_weight="1" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:hint="Titulo de la noticia"
+                android:ems="10"
+                android:id="@+id/etNombre" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="104dp"
+            android:weightSum="1">
+
+            <TextView
+                android:text="Subtitulo:"
+                android:layout_width="137dp"
+                android:layout_height="39dp"
+                android:id="@+id/tvSubtitulo" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:inputType="textMultiLine"
+                android:ems="10"
+                android:id="@+id/etSubtitulo"
+                android:hint="Subtitulo de la noticia" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:text="Cuerpo:"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/tvCuerpo"
+                android:layout_weight="0.01" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textMultiLine"
+                android:ems="10"
+                android:id="@+id/etCuerpo"
+                android:hint="Cuerpo de la noticia"
+                android:layout_weight="0.08" />
+
+            <Button
+                android:text="Registrar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/btnRegistrarNoticia"
+                android:layout_weight="0.01" />
+        </LinearLayout>
+
+    </LinearLayout>
+</FrameLayout>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_width="57dp"
+            android:layout_height="46dp"
+            app:srcCompat="@drawable/ic_user"
+            android:id="@+id/ivUsuario"
+            android:layout_weight="1" />
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="190dp"
+            android:layout_height="53dp">
+
+
+            <TextView
+                android:id="@+id/tvUsuarioRan"
+                android:text="Nombre de usuario"
+                android:textStyle="bold"
+                android:layout_width="290dp"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/tvOrganismoRan"
+                android:text="Organismo"
+                android:textStyle="bold"
+                android:layout_width="290dp"
+                android:layout_height="wrap_content" />
+
+
+        </LinearLayout>
+
+        <TextView
+            android:text="Puntos"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tvPuntos"
+            android:layout_weight="1" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@android:drawable/btn_star_big_on"
+            android:id="@+id/imageView3"
+            android:layout_weight="1.90" />
+    </LinearLayout>
+
+
+</LinearLayout>

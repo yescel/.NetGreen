@@ -39,8 +39,8 @@ public class AdaptadorListaInicio extends ArrayAdapter {
             vh.mDescripcion = (TextView)convertView.findViewById(R.id.tvDescripcion);
             vh.mUsuario = (TextView)convertView.findViewById(R.id.tvUsuario);
             vh.mCategoria = (TextView)convertView.findViewById(R.id.tvCategoria);
-            vh.mParticipantes = (TextView)convertView.findViewById(R.id.tvParticipantes);
-            vh.mSeguidores = (TextView)convertView.findViewById(R.id.tvSeguidores);
+           // vh.mParticipantes = (TextView)convertView.findViewById(R.id.tvParticipantes);
+            //vh.mSeguidores = (TextView)convertView.findViewById(R.id.tvSeguidores);
 
             convertView.setTag(vh);
 
@@ -52,8 +52,8 @@ public class AdaptadorListaInicio extends ArrayAdapter {
         vh.mDescripcion.setText(publicaciones.get(position).getDescripcionAct_Not());
         vh.mUsuario.setText(publicaciones.get(position).getNomUsuario());
         vh.mCategoria.setText(publicaciones.get(position).getCategoria());
-        vh.mParticipantes.setText(publicaciones.get(position).getCantParticipantes());
-        vh.mSeguidores.setText(publicaciones.get(position).getCantSeguidores());
+       // vh.mParticipantes.setText(publicaciones.get(position).getCantParticipantes() +"");
+       // vh.mSeguidores.setText(publicaciones.get(position).getCantSeguidores()+"");
 
         return convertView;
     }
@@ -64,7 +64,7 @@ public class AdaptadorListaInicio extends ArrayAdapter {
         TextView mDescripcion;
         TextView mUsuario;
         TextView mCategoria;
-        TextView mParticipantes;
-        TextView mSeguidores;
+       // TextView mParticipantes;
+       // TextView mSeguidores;
     }
 }

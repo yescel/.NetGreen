@@ -2,6 +2,9 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".DashboardActivity">
+    <item android:title="Perfil"
+          android:id="@+id/mnuitem_action_perfil"
+          android:icon="@drawable/ic_user" />
     <item android:title="Membresia" />
     <item android:title="Configuacion" />
     <item android:title="Cerrar sesion" />

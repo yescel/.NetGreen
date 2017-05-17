@@ -3,13 +3,39 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp"
-    tools:context=".DashboardActivity">
+    tools:context="com.tallerandroid.netgreen.FragmentInicio">
 
-    <ListView
-        android:id="@+id/lvInicio"
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
-    </ListView>
+        android:layout_height="436dp"></LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="526dp"
+        android:weightSum="1"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true">
+
+        <Spinner android:id="@+id/spinnerCategorias"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.18" />
+
+        <Spinner android:id="@+id/spinnerSubCategorias"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.19" />
+
+        <ListView
+            android:id="@+id/lvInicio"
+            android:layout_width="match_parent"
+            android:layout_height="321dp"
+            android:layout_weight="0.59">
+        </ListView>
+    </LinearLayout>
 
 
 </FrameLayout>
