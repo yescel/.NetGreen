@@ -15,7 +15,8 @@
         android:fontFamily="sans-serif"
         android:hint="Nombre"
         android:inputType="text"
-        android:textColor="@android:color/black" />
+        android:textColor="@android:color/black"
+        android:textColorHint="@color/colorVerdeOscuro" />
 
     <EditText
         android:id="@+id/txtEmail"
@@ -28,7 +29,8 @@
         android:fontFamily="sans-serif"
         android:hint="Ejemplo@ejemplo.com"
         android:inputType="textEmailAddress"
-        android:textColor="@android:color/black" />
+        android:textColor="@android:color/black"
+        android:textColorHint="@color/colorVerdeOscuro" />
 
     <EditText
         android:id="@+id/txtPassword"
@@ -42,7 +44,8 @@
         android:fontFamily="sans-serif"
         android:hint="Contraseña"
         android:inputType="textPassword"
-        android:textColor="@android:color/black" />
+        android:textColor="@android:color/black"
+        android:textColorHint="@color/colorVerdeOscuro" />
 
     <EditText
         android:id="@+id/txtPassword2"
@@ -56,7 +59,8 @@
         android:fontFamily="sans-serif"
         android:hint="Repetir contraseña"
         android:inputType="textPassword"
-        android:textColor="@android:color/black" />
+        android:textColor="@android:color/black"
+        android:textColorHint="@color/colorVerdeOscuro" />
 
     <Button
         android:id="@+id/btnRegistrar"
@@ -70,7 +74,9 @@
         android:layout_marginTop="45dp"
         android:background="@drawable/boton_pulsado"
         android:ems="16"
-        android:text="Crear cuenta" />
+        android:text="Crear cuenta"
+        android:textColor="@color/cardview_light_background"
+        />
 
 
     <TextView
@@ -83,5 +89,6 @@
         android:layout_marginBottom="35dp"
         android:gravity="center"
         android:text="¿Ya eres usuario? Iniciar sesión"
-        android:textSize="16dip" />
+        android:textSize="16dip"
+        android:textColor="@color/colorVerdeOscuro"/>
 </RelativeLayout>

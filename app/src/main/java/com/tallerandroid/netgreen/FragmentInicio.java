@@ -108,12 +108,60 @@ public class FragmentInicio extends Fragment {
         publicaciones = new ArrayList<>();
         p1 = new Inicio();
         // p1.setImagen(null);
-        p1.setNomActividad_Noticia("hola");
-        p1.setDescripcionAct_Not("Esta es la descripcion de la actividad o noticia");
+        p1.setNomActividad_Noticia("Reforestacion");
+        p1.setDescripcionAct_Not("Reforestacion de parque el Laguito");
         p1.setUsuario("Yessica");
+        p1.setCategoria("Ambiental");
+        publicaciones.add(p1);
+
+        p1 = new Inicio();
+        // p1.setImagen(null);
+        p1.setNomActividad_Noticia("Acitividad 1");
+        p1.setDescripcionAct_Not("Esta es la descripcion de la actividad o noticia");
+        p1.setUsuario("Usuario Organizador");
+        p1.setCategoria("Categoria");
+        publicaciones.add(p1);
+
+        p1 = new Inicio();
+        // p1.setImagen(null);
+        p1.setNomActividad_Noticia("Actividad 2");
+        p1.setDescripcionAct_Not("Esta es la descripcion de la actividad o noticia");
+        p1.setUsuario("Usuario Organizador");
+        p1.setCategoria("Categoria");
+        publicaciones.add(p1);
+
+        p1 = new Inicio();
+        // p1.setImagen(null);
+        p1.setNomActividad_Noticia("Actividad 3");
+        p1.setDescripcionAct_Not("Esta es la descripcion de la actividad o noticia");
+        p1.setUsuario("Usuario Organizador");
+        p1.setCategoria("Categoria");
+        publicaciones.add(p1);
+
+
+        p1 = new Inicio();
+        // p1.setImagen(null);
+        p1.setNomActividad_Noticia("Actividad 4");
+        p1.setDescripcionAct_Not("Esta es la descripcion de la actividad o noticia");
+        p1.setUsuario("Usuario Organizador");
+        p1.setCategoria("Categoria");
+        publicaciones.add(p1);
+
+
+        p1 = new Inicio();
+        // p1.setImagen(null);
+        p1.setNomActividad_Noticia("Actividad 5");
+        p1.setDescripcionAct_Not("Esta es la descripcion de la actividad o noticia");
+        p1.setUsuario("Usuario Organizador");
         p1.setCategoria("Pruebas");
-        //p1.setCantParticipantes(0);
-        //p1.setCantSeguidores(3);
+        publicaciones.add(p1);
+
+        p1 = new Inicio();
+        // p1.setImagen(null);
+        p1.setNomActividad_Noticia("Actividad 6");
+        p1.setDescripcionAct_Not("Esta es la descripcion de la actividad o noticia");
+        p1.setUsuario("Usuario Organizador");
+        p1.setCategoria("Pruebas");
         publicaciones.add(p1);
 
         lvPublicaciones = (ListView) getView().findViewById(R.id.lvInicio);

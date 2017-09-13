@@ -3,77 +3,149 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/colorGris">
 
-    <EditText
-        android:id="@+id/txtEmail"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/txtPassword"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="28dp"
-        android:drawableLeft="@drawable/ic_user"
-        android:ems="16"
-        android:fontFamily="sans-serif"
-        android:hint="  Correo"
-        android:inputType="textEmailAddress"
-        android:textColor="@android:color/black"
-        tools:ignore="UnusedAttribute" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <EditText
-        android:id="@+id/txtPassword"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/txtEmail"
-        android:layout_alignStart="@+id/txtEmail"
-        android:layout_centerVertical="true"
-        android:drawableLeft="@drawable/ic_passwd"
-        android:ems="16"
-        android:fontFamily="sans-serif"
-        android:hint="  Contraseña"
-        android:inputType="textPassword"
-        android:textColor="@android:color/background_dark"
-        tools:ignore="HardcodedText,UnusedAttribute" />
-
-    <Button
-        android:id="@+id/btnRegistrar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/txtPassword"
-        android:layout_alignLeft="@+id/txtPassword"
-        android:layout_alignRight="@+id/txtPassword"
-        android:layout_alignStart="@+id/txtPassword"
-        android:layout_below="@+id/txtPassword"
-        android:layout_marginTop="60dp"
-        android:background="@drawable/boton_pulsado"
-        android:ems="16"
-        android:text="Iniciar"
-        android:visibility="visible"
-        tools:ignore="HardcodedText" />
-
-    <TextView
-        android:id="@+id/link_signup"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/btnRegistrar"
-        android:layout_marginTop="22dp"
-        android:gravity="center"
-        android:text="@string/no_tienes_cuenta_a_n_crea_una"
-        android:textSize="16sp" />
+    </RelativeLayout>
 
     <ImageView
         android:id="@+id/imagen"
         android:layout_width="match_parent"
-        android:layout_height="130dp"
-        android:layout_above="@+id/txtEmail"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentStart="true"
+        android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
+        android:layout_marginTop="23dp"
         app:srcCompat="@mipmap/logo"
         tools:ignore="ContentDescription" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/linearLayout3">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="58dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/txtEmail"
+                android:layout_width="wrap_content"
+                android:layout_height="34dp"
+                android:layout_above="@+id/txtPassword"
+                android:layout_alignEnd="@+id/txtPassword"
+                android:layout_alignLeft="@+id/txtPassword"
+                android:layout_alignRight="@+id/txtPassword"
+                android:layout_alignStart="@+id/txtPassword"
+                android:background="@color/cardview_light_background"
+                android:drawableLeft="@drawable/ic_usuario"
+                android:ems="16"
+                android:fontFamily="sans-serif"
+                android:hint="  Correo"
+                android:inputType="textEmailAddress"
+                android:textColor="@android:color/black"
+                android:textColorHint="@color/colorVerdeOscuro"
+                tools:ignore="UnusedAttribute" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="80dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:orientation="horizontal"
+            android:weightSum="1">
+
+            <EditText
+                android:id="@+id/txtPassword"
+                android:layout_width="wrap_content"
+                android:layout_height="34dp"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:background="@color/cardview_light_background"
+                android:drawableLeft="@drawable/ic_pass"
+                android:ems="16"
+                android:fontFamily="sans-serif"
+                android:hint="  Contraseña"
+                android:inputType="textPassword"
+                android:textColor="@android:color/background_dark"
+                android:textColorHint="@color/colorVerdeOscuro"
+                tools:ignore="HardcodedText,UnusedAttribute" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="66dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:orientation="horizontal"
+            android:weightSum="1">
+
+            <Button
+                android:id="@+id/btnRegistrar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/txtPassword"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/boton_pulsado"
+                android:ems="16"
+                android:gravity="center"
+                android:text="¡COMENZAR!"
+                android:textColor="@color/cardview_light_background"
+                android:visibility="visible"
+                tools:ignore="HardcodedText" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="42dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/link_recuperaPwd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/link_signup"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/recuperar_pass"
+                android:textColor="@color/colorVerdeOscuro"
+                android:textColorHint="@color/colorPrimary"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/link_signup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/btnRegistrar"
+                android:layout_marginTop="15dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/crear_cuenta"
+                android:textColor="@color/colorVerdeOscuro"
+                android:textColorHint="@color/colorPrimary"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+    </LinearLayout>
 
 </RelativeLayout>

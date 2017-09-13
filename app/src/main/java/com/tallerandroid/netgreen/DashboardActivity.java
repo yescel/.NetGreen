@@ -1,6 +1,7 @@
 package com.tallerandroid.netgreen;
 
 import android.app.FragmentManager;
+import android.content.ClipData;
 import android.content.Intent;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -14,25 +15,39 @@ import android.widget.ListView;
 
 import java.util.ArrayList;
 
+import static com.tallerandroid.netgreen.R.drawable.ic_user;
+
 public class DashboardActivity extends AppCompatActivity {
+
+    private static final Integer[] Icons = new Integer[]{
+            R.drawable.ic_inicio,
+            R.drawable.ic_crear_act,
+            R.drawable.ic_crear_nota,
+            R.drawable.ic_ranking};
+
+    private TabLayout tabLayout;
+    private ViewPager viewPager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
 
-
         Toolbar toolbar = (Toolbar) findViewById(R.id.appbar);
         setSupportActionBar(toolbar);
 
-
-        ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
+        viewPager = (ViewPager) findViewById(R.id.viewpager);
         viewPager.setAdapter(new MiFragmentPagerAdapter(
                 getSupportFragmentManager()));
 
-
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.appbartabs);
+        tabLayout = (TabLayout) findViewById(R.id.appbartabs);
         tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
         tabLayout.setupWithViewPager(viewPager);
+        setupTabIcons();
+
+
+       // TabLayout.Tab tabInicio = tabLayout.getTabAt(ic_user);
+       // tabInicio.setIcon(R.drawable.ic_user);
 
 
 
@@ -58,5 +73,13 @@ public class DashboardActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void setupTabIcons() {
+        tabLayout.getTabAt(0).setIcon(Icons[0]);
+        tabLayout.getTabAt(1).setIcon(Icons[1]);
+        tabLayout.getTabAt(2).setIcon(Icons[2]);
+        tabLayout.getTabAt(3).setIcon(Icons[3]);
+
     }
 }

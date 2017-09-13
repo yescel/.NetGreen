@@ -8,4 +8,23 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-</resources>
+    <style name="TabLayoutStyle" parent="Widget.Design.TabLayout">
+        <item name="tabIndicatorColor">@color/colorVerdeClaro</item>
+        <item name="tabIndicatorHeight">1dp</item>
+        <item name="tabPaddingStart">8dp</item>
+        <item name="tabPaddingEnd">8dp</item>
+        <item name="tabBackground">?attr/selectableItemBackground</item>
+    </style>
+
+    <!--
+         <item name="tabTextAppearance">@style/TabTextAppearance</item>
+         <item name="tabSelectedTextColor">@android:color/white</item>
+     </style>
+     <style name="TabTextAppearance" parent="TextAppearance.Design.Tab">
+
+         <item name="android:textSize">14sp</item>
+         <item name="android:textColor">@color/colorclaro</item>
+         <item name="textAllCaps">true</item>
+     </style>
+        -->
+ </resources>

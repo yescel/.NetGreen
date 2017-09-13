@@ -1,8 +1,14 @@
 package com.tallerandroid.netgreen;
 
+import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.style.ImageSpan;
+import android.widget.ImageView;
 
 /**
  * Created by yesce on 14/05/2017.
@@ -11,7 +17,8 @@ import android.support.v4.app.FragmentPagerAdapter;
 public class MiFragmentPagerAdapter extends FragmentPagerAdapter {
 
     final int PAGE_COUNT = 4;
-    private String tabTitles[] = new String[] { "Ini", "CA", "CN", "Ran"};
+
+    private String tabTitles[] = new String[] { "Inicio", "Crear Act", "Crear Not", "Ranking"};
 
     public MiFragmentPagerAdapter(FragmentManager fm) {
         super(fm);
@@ -19,9 +26,7 @@ public class MiFragmentPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-
         Fragment f = null;
-
         switch(position) {
             case 0:
                 f = FragmentInicio.newInstance();
@@ -48,6 +53,23 @@ public class MiFragmentPagerAdapter extends FragmentPagerAdapter {
     @Override
     public CharSequence getPageTitle(int position) {
         // Generate title based on item position
-        return tabTitles[position];
+        switch (position)
+        {
+            case 0:
+                return "";
+            case 1:
+                return "";
+
+            case 2:
+                return "";
+
+            case 3:
+                return "";
+            default:
+                return "";
+
+        }
+        //return tabTitles[position];
+
     }
 }

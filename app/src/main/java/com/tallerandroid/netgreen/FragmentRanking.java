@@ -45,7 +45,31 @@ public class FragmentRanking extends Fragment {
         aRanking = new ArrayList<>();
         p1 = new Ranking();
         // p1.setImagen(null);
-        p1.setNomUsuario("Yessica");
+        p1.setNomUsuario("Usuario1");
+        p1.setNomOrganismo("Organismo");
+        aRanking.add(p1);
+
+        p1.setNomUsuario("Usuario2");
+        p1.setNomOrganismo("Organismo");
+        aRanking.add(p1);
+
+        p1.setNomUsuario("Usuario3");
+        p1.setNomOrganismo("Organismo");
+        aRanking.add(p1);
+
+        p1.setNomUsuario("Usuario4");
+        p1.setNomOrganismo("Organismo");
+        aRanking.add(p1);
+
+        p1.setNomUsuario("Usuario5");
+        p1.setNomOrganismo("Organismo");
+        aRanking.add(p1);
+
+        p1.setNomUsuario("Usuario6");
+        p1.setNomOrganismo("Organismo");
+        aRanking.add(p1);
+
+        p1.setNomUsuario("Usuario7");
         p1.setNomOrganismo("Organismo");
         aRanking.add(p1);
 

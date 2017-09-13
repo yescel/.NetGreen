@@ -1,8 +1,8 @@
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     tools:context=".DashboardActivity">
 
@@ -17,6 +17,7 @@
 
         <android.support.design.widget.TabLayout
             android:id="@+id/appbartabs"
+            style="@style/TabLayoutStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 

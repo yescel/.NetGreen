@@ -5,6 +5,7 @@
     <item android:title="Perfil"
           android:id="@+id/mnuitem_action_perfil"
           android:icon="@drawable/ic_user" />
+    <item android:title="Mapas" />
     <item android:title="Membresia" />
     <item android:title="Configuacion" />
     <item android:title="Cerrar sesion" />

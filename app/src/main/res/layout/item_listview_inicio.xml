@@ -47,19 +47,19 @@
                 android:id="@+id/tvCategoria"
                 android:text="Categoria"
                 android:textStyle="bold"
-                android:layout_width="212dp"
+                android:layout_width="115dp"
                 android:layout_height="wrap_content" />
 
             <TextView
                 android:id="@+id/tvParticipantes"
-                android:text="Part"
+                android:text="#Part"
                 android:textStyle="bold"
                 android:layout_width="74dp"
                 android:layout_height="wrap_content" />
 
             <TextView
                 android:id="@+id/tvSeguidores"
-                android:text="Segui"
+                android:text="#Segui"
                 android:textStyle="bold"
                 android:layout_width="377dp"
                 android:layout_height="wrap_content" />
