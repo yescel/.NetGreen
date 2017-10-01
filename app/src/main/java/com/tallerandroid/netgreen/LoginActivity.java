@@ -23,8 +23,10 @@ public class LoginActivity extends AppCompatActivity {
     EditText _emailText;
     @InjectView(R.id.txtPassword)
     EditText _passwordText;
-    @InjectView(R.id.btnRegistrar)
+    @InjectView(R.id.btnModificar)
     Button _loginButton;
+    @InjectView(R.id.link_recuperaPwd)
+    TextView _recuperaPwdLink;
     @InjectView(R.id.link_signup)
     TextView _signupLink;
 
@@ -51,6 +53,14 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), SignupActivity.class);
+                startActivityForResult(intent, REQUEST_SIGNUP);
+            }
+        });
+        _recuperaPwdLink.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), RecuperaPwd.class);
                 startActivityForResult(intent, REQUEST_SIGNUP);
             }
         });

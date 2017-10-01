@@ -1,21 +1,13 @@
 package com.tallerandroid.netgreen;
 
-import android.app.FragmentManager;
-import android.content.ClipData;
 import android.content.Intent;
 import android.support.design.widget.TabLayout;
-import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ListView;
-
-import java.util.ArrayList;
-
-import static com.tallerandroid.netgreen.R.drawable.ic_user;
 
 public class DashboardActivity extends AppCompatActivity {
 
@@ -23,7 +15,9 @@ public class DashboardActivity extends AppCompatActivity {
             R.drawable.ic_inicio,
             R.drawable.ic_crear_act,
             R.drawable.ic_crear_nota,
-            R.drawable.ic_ranking};
+            R.drawable.ic_ranking,
+            R.drawable.ic_notificacion
+            };
 
     private TabLayout tabLayout;
     private ViewPager viewPager;
@@ -44,13 +38,8 @@ public class DashboardActivity extends AppCompatActivity {
         tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
         tabLayout.setupWithViewPager(viewPager);
         setupTabIcons();
-
-
        // TabLayout.Tab tabInicio = tabLayout.getTabAt(ic_user);
        // tabInicio.setIcon(R.drawable.ic_user);
-
-
-
     }
 
     @Override
@@ -71,6 +60,14 @@ public class DashboardActivity extends AppCompatActivity {
             Intent intent = new Intent(this, PerfilActivity.class);
             startActivity(intent);
         }
+        if (id == R.id.mnuitem_action_mapa) {
+            Intent intent = new Intent(this, MapaActivity.class);
+            startActivity(intent);
+        }
+        if (id == R.id.mnuitem_action_ajustes_cuenta) {
+            Intent intent = new Intent(this, AjustesCuenta.class);
+            startActivity(intent);
+        }
 
         return super.onOptionsItemSelected(item);
     }
@@ -80,6 +77,6 @@ public class DashboardActivity extends AppCompatActivity {
         tabLayout.getTabAt(1).setIcon(Icons[1]);
         tabLayout.getTabAt(2).setIcon(Icons[2]);
         tabLayout.getTabAt(3).setIcon(Icons[3]);
-
+        tabLayout.getTabAt(4).setIcon(Icons[4]);
     }
 }

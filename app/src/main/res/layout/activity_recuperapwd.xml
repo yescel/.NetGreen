@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="85dp"
+        android:text="Recuperar contraseña"
+        android:textAppearance="@style/TextAppearance.AppCompat.Title" />
+
+    <EditText
+        android:id="@+id/txtNameUsuario"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="16"
+        android:fontFamily="sans-serif"
+        android:hint="Nombre de usuario"
+        android:inputType="text"
+        android:textColor="@android:color/black"
+        android:textColorHint="@color/colorVerdeOscuro"
+        android:layout_above="@+id/txtCorreo"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+    <EditText
+        android:id="@+id/txtCorreo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="16"
+        android:fontFamily="sans-serif"
+        android:hint="Correo de recuperacion"
+        android:inputType="text"
+        android:textColor="@android:color/black"
+        android:textColorHint="@color/colorVerdeOscuro"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <Button
+        android:id="@+id/btnRecuperar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/boton_pulsado"
+        android:ems="16"
+        android:text="Enviar"
+        android:textColor="@color/cardview_light_background"
+        android:layout_below="@+id/txtNameUsuario"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="181dp" />
+
+    <TextView
+        android:id="@+id/link_login"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="35dp"
+        android:gravity="center"
+        android:text="Regresar"
+        android:textSize="16dip"
+        android:textColor="@color/colorVerdeOscuro"/>
+</RelativeLayout>

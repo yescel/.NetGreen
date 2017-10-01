@@ -16,9 +16,9 @@ import android.widget.ImageView;
 
 public class MiFragmentPagerAdapter extends FragmentPagerAdapter {
 
-    final int PAGE_COUNT = 4;
+    final int PAGE_COUNT = 5;
 
-    private String tabTitles[] = new String[] { "Inicio", "Crear Act", "Crear Not", "Ranking"};
+    private String tabTitles[] = new String[] { "Inicio", "Crear Act", "Crear Not", "Ranking", "Not"};
 
     public MiFragmentPagerAdapter(FragmentManager fm) {
         super(fm);
@@ -40,6 +40,8 @@ public class MiFragmentPagerAdapter extends FragmentPagerAdapter {
             case 3:
                 f = FragmentRanking.newInstance();
                 break;
+            case 4:
+                f = FragmentNotificaciones.newInstance();
         }
 
         return f;
@@ -59,11 +61,11 @@ public class MiFragmentPagerAdapter extends FragmentPagerAdapter {
                 return "";
             case 1:
                 return "";
-
             case 2:
                 return "";
-
             case 3:
+                return "";
+            case 4:
                 return "";
             default:
                 return "";

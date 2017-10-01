@@ -2,11 +2,21 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".DashboardActivity">
-    <item android:title="Perfil"
-          android:id="@+id/mnuitem_action_perfil"
-          android:icon="@drawable/ic_user" />
-    <item android:title="Mapas" />
-    <item android:title="Membresia" />
-    <item android:title="Configuacion" />
+    <item
+        android:id="@+id/mnuitem_action_perfil"
+        android:icon="@drawable/ic_user"
+        android:title="Perfil"
+        android:visible="true" />
+    <item
+        android:id="@+id/mnuitem_action_mapa"
+        android:icon="@drawable/ic_ranking"
+        android:title="Centros reciclaje" />
+
+    <item
+        android:id="@+id/mnuitem_action_ajustes_cuenta"
+        android:title="Ajustes de cuenta" />
+    <item
+        android:id="@+id/mnuitem_action_patrocinadores"
+        android:title="Patrocinadores" />
     <item android:title="Cerrar sesion" />
 </menu>

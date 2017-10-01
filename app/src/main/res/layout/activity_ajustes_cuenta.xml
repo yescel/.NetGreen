@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ajustes de cuenta"
+        android:textAppearance="@style/TextAppearance.AppCompat.Title"
+        android:layout_marginTop="61dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <EditText
+        android:id="@+id/txtName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="16"
+        android:fontFamily="sans-serif"
+        android:hint="Nuevo nombre de usuario"
+        android:inputType="text"
+        android:textColor="@android:color/black"
+        android:textColorHint="@color/colorVerdeOscuro"
+        android:layout_below="@+id/textView2"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="78dp" />
+
+    <EditText
+        android:id="@+id/txtEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="16"
+        android:fontFamily="sans-serif"
+        android:hint="Cambiar correo"
+        android:inputType="textEmailAddress"
+        android:textColor="@android:color/black"
+        android:textColorHint="@color/colorVerdeOscuro"
+        android:layout_below="@+id/txtName"
+        android:layout_alignLeft="@+id/txtName"
+        android:layout_alignStart="@+id/txtName"
+        android:layout_marginTop="29dp" />
+
+    <EditText
+        android:id="@+id/txtPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="16"
+        android:fontFamily="sans-serif"
+        android:hint="Cambiar contraseña"
+        android:inputType="textPassword"
+        android:textColor="@android:color/black"
+        android:textColorHint="@color/colorVerdeOscuro"
+        android:layout_below="@+id/txtEmail"
+        android:layout_alignLeft="@+id/txtEmail"
+        android:layout_alignStart="@+id/txtEmail"
+        android:layout_marginTop="34dp" />
+
+    <EditText
+        android:id="@+id/txtPassword2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="16"
+        android:fontFamily="sans-serif"
+        android:hint="Repetir contraseña"
+        android:inputType="textPassword"
+        android:textColor="@android:color/black"
+        android:textColorHint="@color/colorVerdeOscuro"
+        android:layout_below="@+id/txtPassword"
+        android:layout_alignLeft="@+id/txtPassword"
+        android:layout_alignStart="@+id/txtPassword"
+        android:layout_marginTop="33dp" />
+
+    <Button
+        android:id="@+id/btnModificar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/boton_pulsado"
+        android:ems="16"
+        android:text="MODIFICAR CUENTA"
+        android:textColor="@color/cardview_light_background"
+        android:layout_marginBottom="37dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
+
+
+</RelativeLayout>
