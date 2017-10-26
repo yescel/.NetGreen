@@ -16,17 +16,10 @@
             android:layout_width="match_parent"
             android:layout_height="50dp">
 
-            <TextView
-                android:text="Categoria:"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/tvCategoria"
-                android:layout_weight="1"/>
-
             <Spinner
                 android:layout_width="259dp"
                 android:layout_height="wrap_content"
-                android:id="@+id/spinnerCategorias"
+                android:id="@+id/spinnerCategorias_CrearNot"
                 android:layout_weight="1.44" />
 
         </LinearLayout>
@@ -36,17 +29,10 @@
             android:layout_width="match_parent"
             android:layout_height="50dp">
 
-            <TextView
-                android:text="Sub-Categoria:"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/tvSubCategoria"
-                android:layout_weight="1"/>
-
             <Spinner
-                android:layout_width="259dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/spinnerSubCategorias"/>
+                android:id="@+id/spinnerSubCategorias_CrearNot"/>
 
         </LinearLayout>
 
@@ -55,20 +41,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <TextView
-                android:text="Titulo:"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/tvNombre"
-                android:layout_weight="1" />
-
             <EditText
-                android:layout_width="wrap_content"
+                android:id="@+id/etNombre_Noticia"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textPersonName"
-                android:hint="Titulo de la noticia"
                 android:ems="10"
-                android:id="@+id/etNombre" />
+                android:hint="Titulo"
+                android:inputType="textPersonName" />
+
         </LinearLayout>
 
         <LinearLayout
@@ -77,19 +57,22 @@
             android:layout_height="104dp"
             android:weightSum="1">
 
-            <TextView
-                android:text="Subtitulo:"
-                android:layout_width="137dp"
-                android:layout_height="39dp"
-                android:id="@+id/tvSubtitulo" />
+            <EditText
+                android:id="@+id/etDescripcion_Noticia"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Breve descripción"
+                android:inputType="none|textPersonName" />
 
             <EditText
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:inputType="textMultiLine"
-                android:ems="10"
                 android:id="@+id/etSubtitulo"
-                android:hint="Subtitulo de la noticia" />
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Subtitulo"
+                android:inputType="textMultiLine" />
+
         </LinearLayout>
 
         <LinearLayout
@@ -97,28 +80,20 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <TextView
-                android:text="Cuerpo:"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/tvCuerpo"
-                android:layout_weight="0.01" />
-
             <EditText
+                android:id="@+id/etCuerpo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textMultiLine"
+                android:layout_weight="0.05"
                 android:ems="10"
-                android:id="@+id/etCuerpo"
-                android:hint="Cuerpo de la noticia"
-                android:layout_weight="0.08" />
+                android:hint="Cuerpo"
+                android:inputType="textMultiLine" />
 
             <Button
                 android:text="Registrar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/btnRegistrarNoticia"
-                android:layout_weight="0.01" />
+                android:id="@+id/btnRegistrarNoticia" />
         </LinearLayout>
 
     </LinearLayout>

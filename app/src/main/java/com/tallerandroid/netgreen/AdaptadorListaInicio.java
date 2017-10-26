@@ -34,37 +34,32 @@ public class AdaptadorListaInicio extends ArrayAdapter {
             convertView = inflater.inflate(R.layout.item_listview_inicio, null);
 
             vh = new ViewHolder();
-           // vh.mImageViewUsuario = (ImageView)convertView.findViewById(R.id.ivUsuario);
-            vh.mNom_Act_Not = (TextView)convertView.findViewById(R.id.tvNomAct_Not);
-            vh.mDescripcion = (TextView)convertView.findViewById(R.id.tvDescripcion);
-            vh.mUsuario = (TextView)convertView.findViewById(R.id.tvUsuario);
-            vh.mCategoria = (TextView)convertView.findViewById(R.id.tvCategoria);
-           // vh.mParticipantes = (TextView)convertView.findViewById(R.id.tvParticipantes);
-            //vh.mSeguidores = (TextView)convertView.findViewById(R.id.tvSeguidores);
+            vh.mImageViewUsuario = (ImageView)convertView.findViewById(R.id.ivUsuario);
+            vh.mNomUsuario = (TextView)convertView.findViewById(R.id.tvUsuario_Inicio);
+            vh.mFechaPublicacion = (TextView)convertView.findViewById(R.id.tvFechaPublicacion_Inicio);
+            vh.mNomPublicacion = (TextView)convertView.findViewById(R.id.tvPublicacion_Inicio);
+            vh.mDescripcion = (TextView)convertView.findViewById(R.id.tvDescripcion_Inicio);
 
             convertView.setTag(vh);
 
         } else {
             vh = (ViewHolder) convertView.getTag();
         }
-       // vh.mImageViewUsuario.setImageDrawable(publicaciones.get(position).getImagenUsuario().getDrawable());
-        vh.mNom_Act_Not.setText(publicaciones.get(position).getNomActividad_Noticia());
-        vh.mDescripcion.setText(publicaciones.get(position).getDescripcionAct_Not());
-        vh.mUsuario.setText(publicaciones.get(position).getNomUsuario());
-        vh.mCategoria.setText(publicaciones.get(position).getCategoria());
-       // vh.mParticipantes.setText(publicaciones.get(position).getCantParticipantes() +"");
-       // vh.mSeguidores.setText(publicaciones.get(position).getCantSeguidores()+"");
+        vh.mImageViewUsuario.setImageBitmap(publicaciones.get(position).getImagen());
+        vh.mNomUsuario.setText(publicaciones.get(position).getNomUsuario());
+        vh.mFechaPublicacion.setText(publicaciones.get(position).getFechaPublicacion());
+        vh.mNomPublicacion.setText(publicaciones.get(position).getNomPublicacion());
+        vh.mDescripcion.setText(publicaciones.get(position).getDescripcion());
 
         return convertView;
     }
 
     static class ViewHolder{
-        //ImageView mImageViewUsuario;
-        TextView mNom_Act_Not;
+        ImageView mImageViewUsuario;
+        TextView mNomUsuario;
+        TextView mFechaPublicacion;
+        TextView mNomPublicacion;
         TextView mDescripcion;
-        TextView mUsuario;
-        TextView mCategoria;
-       // TextView mParticipantes;
-       // TextView mSeguidores;
+
     }
 }

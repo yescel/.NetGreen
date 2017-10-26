@@ -18,5 +18,7 @@
     <item
         android:id="@+id/mnuitem_action_patrocinadores"
         android:title="Patrocinadores" />
-    <item android:title="Cerrar sesion" />
+    <item
+        android:id="@+id/mnuitem_action_cerrar_sesion"
+        android:title="Cerrar sesion" />
 </menu>

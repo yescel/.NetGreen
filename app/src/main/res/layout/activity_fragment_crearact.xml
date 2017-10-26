@@ -16,17 +16,10 @@
             android:layout_width="match_parent"
             android:layout_height="50dp">
 
-            <TextView
-                android:text="Categoria"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/tvCategoria"
-                android:layout_weight="1"/>
-
             <Spinner
                 android:layout_width="259dp"
                 android:layout_height="wrap_content"
-                android:id="@+id/spinnerCategorias"
+                android:id="@+id/spinnerCategorias_CrearAct"
                 android:layout_weight="1.44" />
 
         </LinearLayout>
@@ -36,17 +29,10 @@
             android:layout_width="match_parent"
             android:layout_height="50dp">
 
-            <TextView
-                android:text="Sub-Categoria"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/tvSubCategoria"
-                android:layout_weight="1"/>
-
             <Spinner
                 android:layout_width="259dp"
                 android:layout_height="wrap_content"
-                android:id="@+id/spinnerSubCategorias"/>
+                android:id="@+id/spinnerSubCategorias_CrearAct"/>
 
         </LinearLayout>
 
@@ -55,15 +41,8 @@
             android:layout_width="match_parent"
             android:layout_height="50dp">
 
-            <TextView
-                android:text="Nombre:"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/tvNombre"
-                android:layout_weight="1" />
-
             <EditText
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textPersonName"
                 android:hint="Nombre de actividad"
@@ -76,21 +55,39 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <TextView
-                android:text="Descripcion"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/tvDescripcion"
-                android:layout_weight="0.01" />
-
             <EditText
+                android:id="@+id/etDescripcion"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textMultiLine"
+                android:layout_weight="0.05"
                 android:ems="10"
-                android:id="@+id/etDescripcion"
-                android:hint="Descripcion de la actividad"
-                android:layout_weight="0.06" />
+                android:hint="Descripción de la actividad"
+                android:inputType="textMultiLine" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/etFecha"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:hint="Fecha del evento"
+                    android:inputType="date" />
+
+                <EditText
+                    android:id="@+id/etHora"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:hint="Hora del evento"
+                    android:inputType="time" />
+
+            </LinearLayout>
 
             <Button
                 android:text="Registrar"

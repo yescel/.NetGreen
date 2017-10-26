@@ -1,0 +1,31 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="3dp"
+    android:weightSum="1">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="29dp"
+        android:orientation="vertical"
+        android:layout_weight="0.93"
+        android:weightSum="1">
+
+        <EditText
+            android:id="@+id/txtRecuperarPwd"
+            android:layout_width="match_parent"
+            android:layout_height="34dp"
+            android:layout_weight="0.04"
+            android:background="@color/cardview_light_background"
+            android:ems="16"
+            android:fontFamily="sans-serif"
+            android:hint="Ingresa tu correo electrónico"
+            android:inputType="textEmailAddress"
+            android:textColor="@android:color/black"
+            android:textColorHint="@color/colorVerdeOscuro" />
+    </LinearLayout>
+
+
+</LinearLayout>

@@ -10,6 +10,16 @@ public class Notificacion {
     private String accion;
     private String actividad_noticia;
 
+    public String getAux() {
+        return aux;
+    }
+
+    public void setAux(String aux) {
+        this.aux = aux;
+    }
+
+    private String aux;
+
     public String getUsuario() {
         return usuario;
     }

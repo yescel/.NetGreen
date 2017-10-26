@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/imageView4"
+            android:layout_width="match_parent"
+            android:layout_height="117dp"
+            app:srcCompat="@mipmap/logo" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tvRegistrateNetGreen"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Registrate a .NetGreen"
+                android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                android:textAlignment="center"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tvSeParteDelCambio"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="¡Se parte del cambio!"
+                android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                android:textAlignment="center"/>
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <EditText
+                android:id="@+id/txtName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/txtEmail"
+                android:layout_alignParentTop="true"
+                android:layout_alignStart="@+id/txtEmail"
+                android:layout_marginTop="22dp"
+                android:ems="16"
+                android:fontFamily="sans-serif"
+                android:hint="Nombre"
+                android:inputType="text"
+                android:textColor="@android:color/black"
+                android:textColorHint="@color/colorVerdeOscuro" />
+            <EditText
+                android:id="@+id/txtEmail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/txtName"
+                android:layout_centerHorizontal="true"
+                android:ems="16"
+                android:fontFamily="sans-serif"
+                android:hint="Ejemplo@ejemplo.com"
+                android:inputType="textEmailAddress"
+                android:textColor="@android:color/black"
+                android:textColorHint="@color/colorVerdeOscuro" />
+
+            <EditText
+                android:id="@+id/txtPassword"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/txtEmail"
+                android:layout_alignStart="@+id/txtEmail"
+                android:layout_below="@+id/txtEmail"
+                android:ems="16"
+                android:fontFamily="sans-serif"
+                android:hint="Contraseña"
+                android:inputType="textPassword"
+                android:textColor="@android:color/black"
+                android:textColorHint="@color/colorVerdeOscuro" />
+
+            <EditText
+                android:id="@+id/txtPassword2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/txtPassword"
+                android:layout_alignStart="@+id/txtPassword"
+                android:layout_below="@+id/txtPassword"
+                android:ems="16"
+                android:fontFamily="sans-serif"
+                android:hint="Repetir contraseña"
+                android:inputType="textPassword"
+                android:textColor="@android:color/black"
+                android:textColorHint="@color/colorVerdeOscuro" />
+
+            <RadioButton
+                android:id="@+id/radHombre"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/txtPassword2"
+                android:layout_alignStart="@+id/txtPassword2"
+                android:layout_below="@+id/txtPassword2"
+                android:checked="true"
+                android:text="Hombre" />
+
+            <RadioButton
+                android:id="@+id/radMujer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Mujer"
+                android:layout_below="@+id/txtPassword2"
+                android:layout_toRightOf="@+id/radHombre"
+                android:layout_toEndOf="@+id/radHombre"
+                android:layout_marginLeft="23dp"
+                android:layout_marginStart="23dp" />
+
+            <Button
+                android:id="@+id/btnRegistrar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/link_login"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="14dp"
+                android:background="@drawable/boton_pulsado"
+                android:ems="16"
+                android:text="Crear cuenta"
+                android:textColor="@color/cardview_light_background" />
+
+            <TextView
+                android:id="@+id/link_login"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginBottom="28dp"
+                android:gravity="center"
+                android:text="¿Ya eres usuario? Iniciar sesión"
+                android:textColor="@color/colorVerdeOscuro"
+                android:textSize="16dip" />
+        </RelativeLayout>
+    </LinearLayout>
+
+
+</RelativeLayout>

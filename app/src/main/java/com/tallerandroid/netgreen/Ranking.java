@@ -9,8 +9,16 @@ import android.widget.ImageView;
 public class Ranking {
     private ImageView ivImagen;
     private String nomUsuario;
-    private String nomOrganismo;
     private ImageView ivInsignida;
+    private String puntos;
+
+    public String getPuntos() {
+        return puntos;
+    }
+
+    public void setPuntos(String puntos) {
+        this.puntos = puntos;
+    }
 
     public ImageView getIvImagen() {
         return ivImagen;
@@ -24,10 +32,6 @@ public class Ranking {
     }
     public void setNomUsuario(String nomUsuario) {   this.nomUsuario = nomUsuario;  }
 
-    public String getNomOrganismo(){
-        return nomOrganismo;
-    }
-    public void setNomOrganismo(String nomOrganismo) {   this.nomOrganismo = nomOrganismo;  }
 
     public ImageView getIvInsignida() { return ivInsignida; }
     public void setIvInsignida(ImageView ivInsignida) {

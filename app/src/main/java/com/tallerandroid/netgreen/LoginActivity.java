@@ -1,8 +1,12 @@
 package com.tallerandroid.netgreen;
 
 import android.app.ProgressDialog;
+import android.content.ContentValues;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -11,19 +15,33 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.util.EntityUtils;
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import butterknife.ButterKnife;
 import butterknife.InjectView;
+
+
+
 
 public class LoginActivity extends AppCompatActivity {
 
     private static final String TAG = "LoginActivity";
     private static final int REQUEST_SIGNUP = 0;
 
+    private SQLiteDatabase db;
+
+
     @InjectView(R.id.txtEmail)
     EditText _emailText;
     @InjectView(R.id.txtPassword)
     EditText _passwordText;
-    @InjectView(R.id.btnModificar)
+    @InjectView(R.id.btnRegistrar)
     Button _loginButton;
     @InjectView(R.id.link_recuperaPwd)
     TextView _recuperaPwdLink;
@@ -35,8 +53,6 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
-        //
         ButterKnife.inject(this);
 
         _loginButton.setOnClickListener(new View.OnClickListener() {
@@ -52,16 +68,15 @@ public class LoginActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), SignupActivity.class);
+                Intent intent = new Intent(getApplicationContext(), RegistrarActivity.class);
                 startActivityForResult(intent, REQUEST_SIGNUP);
             }
         });
         _recuperaPwdLink.setOnClickListener(new View.OnClickListener() {
-
-            @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), RecuperaPwd.class);
-                startActivityForResult(intent, REQUEST_SIGNUP);
+                FragmentManager fragmentManager = getSupportFragmentManager();
+                DialogoRecuperarPwd dialogo = new DialogoRecuperarPwd();
+                dialogo.show(fragmentManager, "tagPersonalizado");
             }
         });
     }
@@ -82,22 +97,21 @@ public class LoginActivity extends AppCompatActivity {
         progressDialog.setMessage("Autentificando...");
         progressDialog.show();
 
-        String email = _emailText.getText().toString();
-        String password = _passwordText.getText().toString();
 
         // TODO: Implement your own authentication logic here.
+        TareaWSValidarUsu tarea = new TareaWSValidarUsu();
+        tarea.execute(_emailText.getText().toString(), _passwordText.getText().toString());
+
+
+
 
         new android.os.Handler().postDelayed(
                 new Runnable() {
                     public void run() {
-                        // On complete call either onLoginSuccess or onLoginFailed
-                        onLoginSuccess();
-                        // onLoginFailed();
                         progressDialog.dismiss();
                     }
                 }, 3000);
     }
-
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -110,7 +124,6 @@ public class LoginActivity extends AppCompatActivity {
             }
         }
     }
-
     @Override
     public void onBackPressed() {
         // Desactivar volver a la MainActivity
@@ -122,9 +135,8 @@ public class LoginActivity extends AppCompatActivity {
         Intent intent = new Intent(getApplicationContext(), DashboardActivity.class);
         startActivityForResult(intent, REQUEST_SIGNUP);
     }
-
     public void onLoginFailed() {
-        Toast.makeText(getBaseContext(), "El inicio de sesión falló!", Toast.LENGTH_LONG).show();
+        Toast.makeText(getBaseContext(), "Verifique sus datos!", Toast.LENGTH_LONG).show();
         _loginButton.setEnabled(true);
     }
 
@@ -151,4 +163,74 @@ public class LoginActivity extends AppCompatActivity {
 
         return valid;
     }
+
+
+
+
+    private class TareaWSValidarUsu extends AsyncTask<String,Integer,Boolean> {
+
+        private int idUsuario;
+        private String correoUsu;
+        private String passwordUsu;
+
+        protected Boolean doInBackground(String... params) {
+            boolean resul = true;
+
+            HttpClient httpClient = new DefaultHttpClient();
+
+            String correo = params[0];
+            String passw = params[1];
+
+            HttpGet del = new HttpGet("http://netgreen.org.mx/ws/consulta_usuario.php?correo=" + correo);
+
+            del.setHeader("content-type", "application/json");
+
+            try
+            {
+                HttpResponse resp = httpClient.execute(del);
+                String respStr = EntityUtils.toString(resp.getEntity());
+
+                JSONArray respJSON = new JSONArray(respStr);
+
+                for(int i=0; i < respJSON.length(); i++) {
+                    JSONObject jsonobject = respJSON.getJSONObject(i);
+                    idUsuario = jsonobject.getInt("idUsuario");
+                    correoUsu    = jsonobject.getString("correo");
+                    passwordUsu  = jsonobject.getString("passwd");
+                }
+
+            }
+            catch(Exception ex)
+            {
+                Log.e("ServicioRest","Error!", ex);
+                resul = false;
+            }
+
+            if(!passw.equals(passwordUsu))
+                resul = false;
+
+            return resul;
+        }
+
+        protected void onPostExecute(Boolean result) {
+
+            if (result)
+            {
+                UsuarioLogueadoSQLiteHelper usdbh = new UsuarioLogueadoSQLiteHelper(getApplicationContext(), "DBUsuario", null, 1);
+                db = usdbh.getWritableDatabase();
+
+                ContentValues nuevoRegistro = new ContentValues();
+                nuevoRegistro.put("idUsuario", idUsuario);
+                db.insert("Usuario", null, nuevoRegistro);
+                onLoginSuccess();
+            }
+            else
+            {
+                onLoginFailed();
+            }
+        }
+    }
+
+
+
 }

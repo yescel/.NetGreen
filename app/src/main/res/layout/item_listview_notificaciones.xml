@@ -10,23 +10,10 @@
 
         <TextView
             android:id="@+id/tvUsuario_Notificacion"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Usuario" />
 
-        <TextView
-            android:id="@+id/tvAccion_Notificacion"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Accion" />
-
-        <TextView
-            android:id="@+id/tvAct_Not_Notificacion"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Act_Not" />
     </LinearLayout>
 </LinearLayout>

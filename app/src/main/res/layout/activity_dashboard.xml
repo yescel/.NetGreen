@@ -19,7 +19,11 @@
             android:id="@+id/appbartabs"
             style="@style/TabLayoutStyle"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:background="@color/cardview_light_background"
+            app:tabIndicatorColor="@color/colorPrimary"
+            app:tabSelectedTextColor="@color/colorPrimary"
+            />
 
     </android.support.design.widget.AppBarLayout>
 

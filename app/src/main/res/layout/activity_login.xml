@@ -91,7 +91,7 @@
             android:weightSum="1">
 
             <Button
-                android:id="@+id/btnModificar"
+                android:id="@+id/btnRegistrar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/txtPassword"
@@ -99,7 +99,7 @@
                 android:background="@drawable/boton_pulsado"
                 android:ems="16"
                 android:gravity="center"
-                android:text="¡COMENZAR!"
+                android:text="INICIAR"
                 android:textColor="@color/cardview_light_background"
                 android:visibility="visible"
                 tools:ignore="HardcodedText" />
@@ -136,7 +136,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:layout_below="@+id/btnModificar"
+                android:layout_below="@+id/btnRegistrar"
                 android:layout_marginTop="15dp"
                 android:layout_weight="1"
                 android:gravity="center"

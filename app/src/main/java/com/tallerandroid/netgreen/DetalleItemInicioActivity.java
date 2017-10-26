@@ -12,4 +12,5 @@ public class DetalleItemInicioActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detalle_item_inicio);
     }
+
 }

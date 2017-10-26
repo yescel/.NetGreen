@@ -1,7 +1,10 @@
 package com.tallerandroid.netgreen;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -65,8 +68,18 @@ public class DashboardActivity extends AppCompatActivity {
             startActivity(intent);
         }
         if (id == R.id.mnuitem_action_ajustes_cuenta) {
-            Intent intent = new Intent(this, AjustesCuenta.class);
+            Intent intent = new Intent(this, AjustesCuentaActivity.class);
             startActivity(intent);
+        }
+        if (id == R.id.mnuitem_action_patrocinadores) {
+            Intent intent = new Intent(this, PatrocinadoresActivity.class);
+            startActivity(intent);
+        }
+
+        if (id == R.id.mnuitem_action_cerrar_sesion) {
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            DialogoCerrarSesion dialogo = new DialogoCerrarSesion();
+            dialogo.show(fragmentManager, "tagPersonalizado");
         }
 
         return super.onOptionsItemSelected(item);
@@ -78,5 +91,29 @@ public class DashboardActivity extends AppCompatActivity {
         tabLayout.getTabAt(2).setIcon(Icons[2]);
         tabLayout.getTabAt(3).setIcon(Icons[3]);
         tabLayout.getTabAt(4).setIcon(Icons[4]);
+
+        tabLayout.getTabAt(0).getIcon().setColorFilter(Color.parseColor("#2ecc71"), PorterDuff.Mode.SRC_IN);
+        tabLayout.getTabAt(1).getIcon().setColorFilter(Color.parseColor("#6B6B6B"), PorterDuff.Mode.SRC_IN);
+        tabLayout.getTabAt(2).getIcon().setColorFilter(Color.parseColor("#6B6B6B"), PorterDuff.Mode.SRC_IN);
+        tabLayout.getTabAt(3).getIcon().setColorFilter(Color.parseColor("#6B6B6B"), PorterDuff.Mode.SRC_IN);
+        tabLayout.getTabAt(4).getIcon().setColorFilter(Color.parseColor("#6B6B6B"), PorterDuff.Mode.SRC_IN);
+
+
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                tab.getIcon().setColorFilter(Color.parseColor("#2ecc71"), PorterDuff.Mode.SRC_IN);
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+                tab.getIcon().setColorFilter(Color.parseColor("#6B6B6B"), PorterDuff.Mode.SRC_IN);
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
     }
 }

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_width="56dp"
+            android:layout_height="46dp"
+            app:srcCompat="@drawable/ic_user"
+            android:id="@+id/ivUsuario" />
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="190dp"
+            android:layout_height="53dp">
+
+
+            <TextView
+                android:id="@+id/tvOrganismoPat"
+                android:layout_width="315dp"
+                android:layout_height="wrap_content"
+                android:text="Colaborador"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvContactoPat"
+                android:layout_width="312dp"
+                android:layout_height="wrap_content"
+                android:text="Contacto" />
+
+            <TextView
+                android:id="@+id/tvTelefonoPat"
+                android:layout_width="306dp"
+                android:layout_height="match_parent"
+                android:text="Telefono" />
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</LinearLayout>

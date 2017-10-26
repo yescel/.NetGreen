@@ -44,15 +44,18 @@ public class FragmentNotificaciones extends Fragment {
         aNotificaciones = new ArrayList<>();
         n1 = new Notificacion();
         // p1.setImagen(null);
-        n1.setUsuario("Yessica Valdes");
-        n1.setAccion("cambio la hora del evento");
-        n1.setActividad_noticia("Recoleccion de comida");
+        n1.setUsuario("Yessica Valdes ");
+        n1.setAccion("cambio la hora del evento ");
+        n1.setActividad_noticia("'Recoleccion de comida'");
+        n1.setAux(n1.getUsuario() + n1.getAccion() + n1.getActividad_noticia());
+
         aNotificaciones.add(n1);
 
         n1 = new Notificacion();
-        n1.setUsuario("Scarleth Hernandez");
-        n1.setAccion("cambio el lugar del evento");
-        n1.setActividad_noticia("Reforestacion");
+        n1.setUsuario("Scarleth Hernandez ");
+        n1.setAccion("cambio el lugar del evento ");
+        n1.setActividad_noticia("'Reforestacion'");
+        n1.setAux(n1.getUsuario() + n1.getAccion() + n1.getActividad_noticia());
         aNotificaciones.add(n1);
 
         lvNotificaciones = (ListView) getView().findViewById(R.id.lvNotificaciones);

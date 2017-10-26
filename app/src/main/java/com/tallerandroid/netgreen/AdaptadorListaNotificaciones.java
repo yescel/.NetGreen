@@ -36,25 +36,25 @@ public class AdaptadorListaNotificaciones extends ArrayAdapter {
 
             vh = new AdaptadorListaNotificaciones.ViewHolder();
             vh.mUsuarioNotificacion = (TextView)convertView.findViewById(R.id.tvUsuario_Notificacion);
-            vh.mAccionNotificacion = (TextView)convertView.findViewById(R.id.tvAccion_Notificacion);
-            vh.mActNotNotificacion = (TextView)convertView.findViewById(R.id.tvAct_Not_Notificacion);
+            //vh.mAccionNotificacion = (TextView)convertView.findViewById(R.id.tvAccion_Notificacion);
+            //vh.mActNotNotificacion = (TextView)convertView.findViewById(R.id.tvAct_Not_Notificacion);
 
             convertView.setTag(vh);
 
         } else {
             vh = (AdaptadorListaNotificaciones.ViewHolder) convertView.getTag();
         }
-        vh.mUsuarioNotificacion.setText(aNotificaciones.get(position).getUsuario());
-        vh.mAccionNotificacion.setText(aNotificaciones.get(position).getAccion());
-        vh.mActNotNotificacion.setText(aNotificaciones.get(position).getActividad_noticia());
+        vh.mUsuarioNotificacion.setText(aNotificaciones.get(position).getAux());
+        //vh.mAccionNotificacion.setText(aNotificaciones.get(position).getAccion());
+        //vh.mActNotNotificacion.setText(aNotificaciones.get(position).getActividad_noticia());
 
         return convertView;
     }
 
     static class ViewHolder{
         TextView mUsuarioNotificacion;
-        TextView mAccionNotificacion;
-        TextView mActNotNotificacion;
+        //TextView mAccionNotificacion;
+        //TextView mActNotNotificacion;
 
     }
 }

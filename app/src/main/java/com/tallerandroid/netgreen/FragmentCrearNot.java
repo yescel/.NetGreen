@@ -36,7 +36,7 @@ public class FragmentCrearNot extends Fragment {
 
         final String[] categorias = new String[]{"Social", "Inclusion social", "Ecologia", "Animal"};
         ArrayAdapter<String> adaptador = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, categorias);
-        spinnerCategorias = (Spinner) getActivity().findViewById(R.id.spinnerCategorias);
+        spinnerCategorias = (Spinner) getActivity().findViewById(R.id.spinnerCategorias_CrearNot);
         adaptador.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerCategorias.setAdapter(adaptador);
 
@@ -56,14 +56,14 @@ public class FragmentCrearNot extends Fragment {
                                         "Brigadas contra el hambre",
                                         "Brigadas contra el frio"};
                                 adaptador = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, subCategorias0);
-                                spinnerSubCategorias = (Spinner) getActivity().findViewById(R.id.spinnerSubCategorias);
+                                spinnerSubCategorias = (Spinner) getActivity().findViewById(R.id.spinnerSubCategorias_CrearNot);
                                 adaptador.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                                 spinnerSubCategorias.setAdapter(adaptador);
                                 break;
                             case 1:
                                 final String[] subCategorias1 = new String[]{"Cursos de capacitacion"};
                                 adaptador = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, subCategorias1);
-                                spinnerSubCategorias = (Spinner) getActivity().findViewById(R.id.spinnerSubCategorias);
+                                spinnerSubCategorias = (Spinner) getActivity().findViewById(R.id.spinnerSubCategorias_CrearNot);
                                 adaptador.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                                 spinnerSubCategorias.setAdapter(adaptador);
                                 break;
@@ -74,7 +74,7 @@ public class FragmentCrearNot extends Fragment {
                                         "Limpieza",
                                         "Energia renovable"};
                                 adaptador = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, subCategorias2);
-                                spinnerSubCategorias = (Spinner) getActivity().findViewById(R.id.spinnerSubCategorias);
+                                spinnerSubCategorias = (Spinner) getActivity().findViewById(R.id.spinnerSubCategorias_CrearNot);
                                 adaptador.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                                 spinnerSubCategorias.setAdapter(adaptador);
                                 break;
@@ -83,7 +83,7 @@ public class FragmentCrearNot extends Fragment {
                                         "Rescate de animales maltratados",
                                         "Casa de perros"};
                                 adaptador = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, subCategorias3);
-                                spinnerSubCategorias = (Spinner) getActivity().findViewById(R.id.spinnerSubCategorias);
+                                spinnerSubCategorias = (Spinner) getActivity().findViewById(R.id.spinnerSubCategorias_CrearNot);
                                 adaptador.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                                 spinnerSubCategorias.setAdapter(adaptador);
                                 break;

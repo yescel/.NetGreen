@@ -6,7 +6,6 @@
     android:orientation="vertical"
     tools:context="com.tallerandroid.netgreen.FragmentRanking">
 
-
     <ListView
         android:id="@+id/lvRanking"
         android:layout_width="match_parent"

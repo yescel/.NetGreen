@@ -3,15 +3,14 @@ package com.tallerandroid.netgreen;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.PagerAdapter;
 
 /**
  * Created by yesce on 15/05/2017.
  */
 
 public class MiFragmentPagerAdapterPerfil extends FragmentPagerAdapter {
-    final int PAGE_COUNT = 3;
-    private String tabTitles[] = new String[] { "Info", "Fotos", "Proyectos"};
+    final int PAGE_COUNT = 4;
+    private String tabTitles[] = new String[] { "Info", "Fotos", "Actividades", "Noticias"};
 
     public MiFragmentPagerAdapterPerfil(FragmentManager fm) {
         super(fm);
@@ -28,8 +27,12 @@ public class MiFragmentPagerAdapterPerfil extends FragmentPagerAdapter {
                 f = FragmentPerfilFotos.newInstance();
                 break;
             case 2:
-                f = FragmentPerfilProyectos.newInstance();
+                f = FragmentPerfilActividades.newInstance();
                 break;
+            case 3:
+                f = FragmentPerfilNoticias.newInstance();
+                break;
+
         }
         return f;
     }
