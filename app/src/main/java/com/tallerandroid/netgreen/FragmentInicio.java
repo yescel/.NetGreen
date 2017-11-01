@@ -93,10 +93,12 @@ public class FragmentInicio extends Fragment {
                 TextView tvTipo = (TextView) v.findViewById(R.id.tvTipoPubblicacion);
                 String txtId = tvId.getText().toString();
                 String txtTipo = tvTipo.getText().toString();
+                String idPublicacion = "";
+                String tipoPublicacion = "";
 
                 try {
                     PubSeleccionadaSQLiteHelper usdbh = new PubSeleccionadaSQLiteHelper(
-                            getContext(), "DBPubSeleccionadad", null, 1);
+                            getContext(), "DBPubSeleccionada", null, 1);
                     db = usdbh.getWritableDatabase();
 
                     ContentValues nuevoRegistro = new ContentValues();
@@ -106,8 +108,8 @@ public class FragmentInicio extends Fragment {
                     Cursor c = db.rawQuery("SELECT idPublicacion, tipoPublicacion FROM PubSeleccionada",
                             null);
                     if (c.moveToFirst()) {
-                        String idPublicacion = c.getString(0);
-                        String tipoPublicacion = c.getString(1);
+                        idPublicacion = c.getString(0);
+                        tipoPublicacion = c.getString(1);
                     }
                     Intent intent = new Intent(getActivity(), DetalleItemInicioActivity.class);
                     startActivity(intent);

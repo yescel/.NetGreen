@@ -16,7 +16,8 @@ public class DetalleItemInicioActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detalle_item_inicio);
-
+        String idPublicacion = "";
+        String tipoPublicacion = "";
 
 
         try {
@@ -26,8 +27,8 @@ public class DetalleItemInicioActivity extends AppCompatActivity {
             Cursor c = db.rawQuery("SELECT idPublicacion, tipoPublicacion FROM PubSeleccionada",
                     null);
             if (c.moveToFirst()) {
-                String idPublicacion = c.getString(0);
-                String tipoPublicacion = c.getString(1);
+                idPublicacion = c.getString(0);
+                tipoPublicacion = c.getString(1);
             }
         }catch (Exception ex){
             String e = ex.toString();
