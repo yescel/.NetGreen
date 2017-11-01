@@ -3,6 +3,7 @@ package com.tallerandroid.netgreen;
 
 import android.content.ContentValues;
 import android.content.Intent;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -94,17 +95,24 @@ public class FragmentInicio extends Fragment {
                 String txtTipo = tvTipo.getText().toString();
 
                 try {
-                    PublicacionSeleccionadaSQLiteHelper usdbh = new PublicacionSeleccionadaSQLiteHelper(
-                            getContext(), "DBPublicacionSeleccionadad", null, 1);
+                    PubSeleccionadaSQLiteHelper usdbh = new PubSeleccionadaSQLiteHelper(
+                            getContext(), "DBPubSeleccionadad", null, 1);
                     db = usdbh.getWritableDatabase();
 
                     ContentValues nuevoRegistro = new ContentValues();
                     nuevoRegistro.put("idPublicacion", txtId);
                     nuevoRegistro.put("tipoPublicacion", txtTipo);
-                    db.insert("PublicacionSeleccionada", null, nuevoRegistro);
+                    db.insert("PubSeleccionada", null, nuevoRegistro);
+                    Cursor c = db.rawQuery("SELECT idPublicacion, tipoPublicacion FROM PubSeleccionada",
+                            null);
+                    if (c.moveToFirst()) {
+                        String idPublicacion = c.getString(0);
+                        String tipoPublicacion = c.getString(1);
+                    }
                     Intent intent = new Intent(getActivity(), DetalleItemInicioActivity.class);
                     startActivity(intent);
                 }catch (Exception ex){
+                    String e = ex.toString();
 
                 }
 

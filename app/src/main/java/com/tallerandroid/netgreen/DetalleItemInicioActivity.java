@@ -20,12 +20,12 @@ public class DetalleItemInicioActivity extends AppCompatActivity {
 
 
         try {
-            PublicacionSeleccionadaSQLiteHelper usdbh = new PublicacionSeleccionadaSQLiteHelper(this,
-                    "DBPublicacionSeleccionada", null, 1);
+            PubSeleccionadaSQLiteHelper usdbh = new PubSeleccionadaSQLiteHelper(this,
+                    "DBPubSeleccionada", null, 1);
             db = usdbh.getWritableDatabase();
-            Cursor c = db.rawQuery("SELECT idPublicacion, tipoPublicacion FROM PublicacionSeleccionada",
+            Cursor c = db.rawQuery("SELECT idPublicacion, tipoPublicacion FROM PubSeleccionada",
                     null);
-            if (c != null) {
+            if (c.moveToFirst()) {
                 String idPublicacion = c.getString(0);
                 String tipoPublicacion = c.getString(1);
             }
@@ -37,7 +37,7 @@ public class DetalleItemInicioActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        db.delete("PublicacionSeleccionada", "", null);
+       // db.delete("PublicacionSeleccionada", "", null);
     }
 
 }
