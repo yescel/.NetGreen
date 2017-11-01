@@ -36,6 +36,9 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class FragmentInicio extends Fragment {
+    public static final String ID_ACTIVIDAD = "com.tallerandroid.netgreen.ID_ACTIVIDAD";
+    public static final String TIPO_ACTIVIDAD = "com.tallerandroid.netgreen.TIPO_ACTIVIDAD";
+
     Spinner spinnerCategorias;
     Spinner spinnerSubCategorias;
 
@@ -93,32 +96,11 @@ public class FragmentInicio extends Fragment {
                 TextView tvTipo = (TextView) v.findViewById(R.id.tvTipoPubblicacion);
                 String txtId = tvId.getText().toString();
                 String txtTipo = tvTipo.getText().toString();
-                String idPublicacion = "";
-                String tipoPublicacion = "";
 
-                try {
-                    PubSeleccionadaSQLiteHelper usdbh = new PubSeleccionadaSQLiteHelper(
-                            getContext(), "DBPubSeleccionada", null, 1);
-                    db = usdbh.getWritableDatabase();
-
-                    ContentValues nuevoRegistro = new ContentValues();
-                    nuevoRegistro.put("idPublicacion", txtId);
-                    nuevoRegistro.put("tipoPublicacion", txtTipo);
-                    db.insert("PubSeleccionada", null, nuevoRegistro);
-                    Cursor c = db.rawQuery("SELECT idPublicacion, tipoPublicacion FROM PubSeleccionada",
-                            null);
-                    if (c.moveToFirst()) {
-                        idPublicacion = c.getString(0);
-                        tipoPublicacion = c.getString(1);
-                    }
-                    Intent intent = new Intent(getActivity(), DetalleItemInicioActivity.class);
-                    startActivity(intent);
-                }catch (Exception ex){
-                    String e = ex.toString();
-
-                }
-
-
+                Intent intent = new Intent(getActivity(), DetalleItemInicioActivity.class);
+                intent.putExtra(ID_ACTIVIDAD, txtId);
+                intent.putExtra(TIPO_ACTIVIDAD, txtTipo);
+                startActivity(intent);
             }
         });
     }
