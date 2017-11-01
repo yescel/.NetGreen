@@ -10,18 +10,16 @@ import android.widget.Button;
  * Created by yesce on 08/10/2017.
  */
 
-public class DetalleItemMiActividad extends AppCompatActivity {
+public class DetalleItemMiNoticiaActivity extends AppCompatActivity {
     private Button btnGuardarCambios = null;
     private Button btnEliminar = null;
-    private Button btnValidar = null;
-
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_detalle_item_actividad);
+        setContentView(R.layout.activity_detalle_item_noticia);
 
 
-        btnGuardarCambios = (Button)findViewById(R.id.btnGuardar_ModificarAct);
+        btnGuardarCambios = (Button)findViewById(R.id.btnGuardar_ModificarNot);
         btnGuardarCambios.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 FragmentManager fragmentManager = getSupportFragmentManager();
@@ -31,7 +29,7 @@ public class DetalleItemMiActividad extends AppCompatActivity {
         });
 
 
-        btnEliminar = (Button)findViewById(R.id.btnCancelarActividad);
+        btnEliminar = (Button)findViewById(R.id.btnEliminar_ModificarNot);
         btnEliminar.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 FragmentManager fragmentManager = getSupportFragmentManager();
@@ -40,15 +38,7 @@ public class DetalleItemMiActividad extends AppCompatActivity {
             }
         });
 
-
-        btnValidar = (Button)findViewById(R.id.btnValidarActividad);
-        btnValidar.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                FragmentManager fragmentManager = getSupportFragmentManager();
-                DialogoValidarActividad dialogo = new DialogoValidarActividad();
-                dialogo.show(fragmentManager, "tagPersonalizado");
-            }
-        });
     }
+
 
 }

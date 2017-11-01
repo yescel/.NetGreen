@@ -2,48 +2,43 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:backgroundTint="@color/cardview_shadow_start_color"
     android:padding="16dp"
     tools:context="com.tallerandroid.netgreen.FragmentInicio">
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:orientation="vertical"
+        android:weightSum="1">
 
-        <ScrollView
+        <Spinner
+            android:id="@+id/spinnerCategorias_Inicio"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true">
+            android:layout_height="48dp"
+            android:focusable="true" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentTop="true"
-                android:orientation="vertical"
-                android:weightSum="1">
+        <Spinner
+            android:id="@+id/spinnerSubCategorias_Inicio"
+            android:layout_width="match_parent"
+            android:layout_height="48dp" />
 
-                <Spinner
-                    android:id="@+id/spinnerCategorias_Inicio"
-                    android:layout_width="match_parent"
-                    android:layout_height="48dp" />
+        <TextView
+            android:id="@+id/textView13"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            android:visibility="invisible" />
 
-                <Spinner
-                    android:id="@+id/spinnerSubCategorias_Inicio"
-                    android:layout_width="match_parent"
-                    android:layout_height="48dp" />
+        <ListView
+            android:id="@+id/lvInicio"
+            android:layout_width="match_parent"
+            android:layout_height="428dp"></ListView>
 
-                <ListView
-                    android:id="@+id/lvInicio"
-                    android:layout_width="match_parent"
-                    android:layout_height="501dp"></ListView>
-
-            </LinearLayout>
-        </ScrollView>
-
-    </RelativeLayout>
+    </LinearLayout>
 
 
 </FrameLayout>

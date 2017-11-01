@@ -42,12 +42,12 @@
             android:layout_height="50dp">
 
             <EditText
+                android:id="@+id/etNombreCreAct"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textPersonName"
-                android:hint="Nombre de actividad"
                 android:ems="10"
-                android:id="@+id/etNombre" />
+                android:hint="Nombre de actividad"
+                android:inputType="textPersonName" />
         </LinearLayout>
 
         <LinearLayout
@@ -56,7 +56,7 @@
             android:layout_height="match_parent">
 
             <EditText
-                android:id="@+id/etDescripcion"
+                android:id="@+id/etDescripcionCreAct"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.05"
@@ -70,21 +70,21 @@
                 android:orientation="horizontal">
 
                 <EditText
-                    android:id="@+id/etFecha"
+                    android:id="@+id/etFechaCreAct"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:ems="10"
-                    android:hint="Fecha del evento"
+                    android:hint="yyyy-mm-dd"
                     android:inputType="date" />
 
                 <EditText
-                    android:id="@+id/etHora"
+                    android:id="@+id/etHoraCreAct"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:ems="10"
-                    android:hint="Hora del evento"
+                    android:hint="hh:mm"
                     android:inputType="time" />
 
             </LinearLayout>
@@ -94,7 +94,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/btnRegistrarActividad"
-                android:layout_weight="0.00" />
+                android:layout_weight="0.00"
+                android:background="@drawable/boton_pulsado"
+                android:textColor="@color/cardview_light_background"
+                />
         </LinearLayout>
 
     </LinearLayout>

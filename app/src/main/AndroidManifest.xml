@@ -70,8 +70,8 @@
         </activity>
         <activity android:name=".PerfilActivity"></activity>
         <activity android:name=".DetalleItemInicioActivity"></activity>
-        <activity android:name=".DetalleItemMiActividad"></activity>
-        <activity android:name=".DetalleItemMiNoticia"></activity>
+        <activity android:name=".DetalleItemMiActividadActivity"></activity>
+        <activity android:name=".DetalleItemMiNoticiaActivity"></activity>
         <activity android:name=".MapaActivity"></activity>
         <activity android:name=".AjustesCuentaActivity"></activity>
 

@@ -25,4 +25,6 @@ public class FragmentPerfilFotos extends Fragment {
     public void onActivityCreated(Bundle state) {
         super.onActivityCreated(state);
     }
+
+
 }

@@ -39,6 +39,8 @@ public class AdaptadorListaInicio extends ArrayAdapter {
             vh.mFechaPublicacion = (TextView)convertView.findViewById(R.id.tvFechaPublicacion_Inicio);
             vh.mNomPublicacion = (TextView)convertView.findViewById(R.id.tvPublicacion_Inicio);
             vh.mDescripcion = (TextView)convertView.findViewById(R.id.tvDescripcion_Inicio);
+            vh.mIdPublicacion = (TextView) convertView.findViewById(R.id.tvIdPublicacion);
+            vh.mTipoPublicacion = (TextView) convertView.findViewById(R.id.tvTipoPubblicacion);
 
             convertView.setTag(vh);
 
@@ -50,6 +52,8 @@ public class AdaptadorListaInicio extends ArrayAdapter {
         vh.mFechaPublicacion.setText(publicaciones.get(position).getFechaPublicacion());
         vh.mNomPublicacion.setText(publicaciones.get(position).getNomPublicacion());
         vh.mDescripcion.setText(publicaciones.get(position).getDescripcion());
+        vh.mIdPublicacion.setText(publicaciones.get(position).getIdPublicacion());
+        vh.mTipoPublicacion.setText(publicaciones.get(position).getTipo());
 
         return convertView;
     }
@@ -60,6 +64,8 @@ public class AdaptadorListaInicio extends ArrayAdapter {
         TextView mFechaPublicacion;
         TextView mNomPublicacion;
         TextView mDescripcion;
+        TextView mIdPublicacion;
+        TextView mTipoPublicacion;
 
     }
 }

@@ -12,10 +12,10 @@ import java.util.Date;
 public class  Inicio {
     private String nomUsuario;
     private String fechaPublicacion;
-    private int idPublicacion;
+    private String idPublicacion;
     private String nomPublicacion;
     private String Descripcion;
-    private int tipo;
+    private String tipo;
     private Bitmap imagen;
     private int idUsuario;
 
@@ -43,11 +43,11 @@ public class  Inicio {
         this.fechaPublicacion = fechaPublicacion;
     }
 
-    public int getIdPublicacion() {
+    public String getIdPublicacion() {
         return idPublicacion;
     }
 
-    public void setIdPublicacion(int idPublicacion) {
+    public void setIdPublicacion(String idPublicacion) {
         this.idPublicacion = idPublicacion;
     }
 
@@ -67,11 +67,11 @@ public class  Inicio {
         Descripcion = descripcion;
     }
 
-    public int getTipo() {
+    public String getTipo() {
         return tipo;
     }
 
-    public void setTipo(int tipo) {
+    public void setTipo(String tipo) {
         this.tipo = tipo;
     }
 

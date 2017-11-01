@@ -5,10 +5,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.widget.Toast;
 
+import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.GoogleMap.OnMarkerClickListener;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -18,6 +20,9 @@ import com.google.android.gms.maps.model.MarkerOptions;
  */
 
 public class MapaActivity extends AppCompatActivity implements OnMarkerClickListener, OnMapReadyCallback {
+        private LatLngBounds NuevoLaredo = new LatLngBounds(
+            new LatLng(27.396155  , -99.626083), new LatLng(27.612972 , -99.406357));
+
         private static final LatLng PLASTICOS1 = new LatLng(27.5164188, -99.58597839999999);
         private static final LatLng METALES2 = new LatLng(27.627573780299002, -99.63844299316406);
         private static final LatLng METALES3 = new LatLng(27.4822551, -99.56243669999998);
@@ -52,12 +57,14 @@ public class MapaActivity extends AppCompatActivity implements OnMarkerClickList
             mapFragment.getMapAsync(this);
 
 
+
         }
 
         @Override
         public void onMapReady(GoogleMap map) {
             mMap = map;
 
+            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(NuevoLaredo.getCenter(), 10));
 
             mPlastico1 = mMap.addMarker(new MarkerOptions()
                     .position(PLASTICOS1)

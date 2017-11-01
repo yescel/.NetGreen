@@ -1,7 +1,9 @@
 package com.tallerandroid.netgreen;
 
 
+import android.content.ContentValues;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.media.Image;
@@ -18,6 +20,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
@@ -38,7 +41,8 @@ public class FragmentInicio extends Fragment {
     ListView lvPublicaciones;
     AdaptadorListaInicio adaptadorLista;
     private ArrayList<Inicio> publicaciones;
-    Inicio p1, p2;
+    Inicio p1;
+    private SQLiteDatabase db;
     String[] categorias;
     String[] subcategorias;
 
@@ -81,10 +85,30 @@ public class FragmentInicio extends Fragment {
 
         TareaWSCargarInicio tarea = new TareaWSCargarInicio();
         tarea.execute(spinnerCategorias.toString());
+
         lvPublicaciones.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> a, View v, int position, long id) {
-                Intent intent = new Intent(getActivity(), DetalleItemInicioActivity.class);
-                startActivity(intent);
+                TextView tvId = (TextView) v.findViewById(R.id.tvIdPublicacion);
+                TextView tvTipo = (TextView) v.findViewById(R.id.tvTipoPubblicacion);
+                String txtId = tvId.getText().toString();
+                String txtTipo = tvTipo.getText().toString();
+
+                try {
+                    PublicacionSeleccionadaSQLiteHelper usdbh = new PublicacionSeleccionadaSQLiteHelper(
+                            getContext(), "DBPublicacionSeleccionadad", null, 1);
+                    db = usdbh.getWritableDatabase();
+
+                    ContentValues nuevoRegistro = new ContentValues();
+                    nuevoRegistro.put("idPublicacion", txtId);
+                    nuevoRegistro.put("tipoPublicacion", txtTipo);
+                    db.insert("PublicacionSeleccionada", null, nuevoRegistro);
+                    Intent intent = new Intent(getActivity(), DetalleItemInicioActivity.class);
+                    startActivity(intent);
+                }catch (Exception ex){
+
+                }
+
+
             }
         });
     }
@@ -92,6 +116,8 @@ public class FragmentInicio extends Fragment {
 
     private class TareaWSCargarInicio extends AsyncTask<String,Integer,Boolean> {
 
+        private int id;
+        private String tipoPublicacion;
         private String usuario;
         private String fecha;
         private String nombrePublicacion;
@@ -118,13 +144,15 @@ public class FragmentInicio extends Fragment {
 
                 for(int i=0; i < respJSON.length(); i++) {
                     JSONObject jsonobject = respJSON.getJSONObject(i);
+                    id = jsonobject.getInt("idPublicacion");
+                    tipoPublicacion = jsonobject.getString("tipo");
                     usuario    = jsonobject.getString("nombre");
                     fecha  = jsonobject.getString("fecha_hora_creacion");
                     nombrePublicacion = jsonobject.getString("nombrePublicacion");
                     descripcion = jsonobject.getString("descripcion");
                     byte[] decodeString = Base64.decode(jsonobject.getString("imagen"), Base64.DEFAULT);
                     imagen = BitmapFactory.decodeByteArray(decodeString,0, decodeString.length);
-
+                    String idPublicacion = Integer.toString(id);
                     p1 = new Inicio();
                     p1.setImagen(null);
                     p1.setNomUsuario(usuario);
@@ -132,6 +160,8 @@ public class FragmentInicio extends Fragment {
                     p1.setNomPublicacion(nombrePublicacion);
                     p1.setDescripcion(descripcion);
                     p1.setImagen(imagen);
+                    p1.setIdPublicacion(idPublicacion);
+                    p1.setTipo(tipoPublicacion);
                     publicaciones.add(p1);
                 }
 

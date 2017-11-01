@@ -132,14 +132,13 @@ public class LoginActivity extends AppCompatActivity {
 
     public void onLoginSuccess() {
         _loginButton.setEnabled(true);
-        Intent intent = new Intent(getApplicationContext(), DashboardActivity.class);
-        startActivityForResult(intent, REQUEST_SIGNUP);
+        Intent mainIntent = new Intent().setClass(this, DashboardActivity.class);
+        startActivity(mainIntent);
     }
     public void onLoginFailed() {
         Toast.makeText(getBaseContext(), "Verifique sus datos!", Toast.LENGTH_LONG).show();
         _loginButton.setEnabled(true);
     }
-
     //Validación de email y password
     public boolean validate() {
         boolean valid = true;

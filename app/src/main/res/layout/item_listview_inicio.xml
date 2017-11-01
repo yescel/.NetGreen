@@ -20,27 +20,37 @@
             android:id="@+id/tvUsuario_Inicio"
             android:layout_width="290dp"
             android:layout_height="wrap_content"
-            android:text="Usuario" />
+            android:text="Usuario"
+            android:textAlignment="viewStart"
+            android:textAppearance="@style/TextAppearance.AppCompat"
+            android:textColor="@color/colorNegro"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
         <TextView
             android:id="@+id/tvFechaPublicacion_Inicio"
-            android:text="Fecha"
-            android:textStyle="bold"
             android:layout_width="290dp"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:text="Fecha"
+            android:textAppearance="@style/TextAppearance.AppCompat"
+            android:textColor="@color/common_google_signin_btn_text_light_default"
+            android:textSize="10sp" />
 
         <TextView
             android:id="@+id/tvPublicacion_Inicio"
-            android:text="Nombre publicacion"
-            android:textStyle="bold"
             android:layout_width="290dp"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:text="Nombre publicacion"
+            android:textAppearance="@style/TextAppearance.AppCompat"
+            android:textSize="14sp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/tvDescripcion_Inicio"
-            android:text="Descripcion"
-            android:textStyle="bold"
             android:layout_width="290dp"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:text="Descripcion"
+            android:textAppearance="@style/TextAppearance.AppCompat" />
 
 
         <LinearLayout
@@ -50,10 +60,27 @@
 
             <TextView
                 android:id="@+id/tvVerMas_Inicio"
-                android:layout_width="290dp"
+                android:layout_width="96dp"
                 android:layout_height="20dp"
+                android:lineSpacingExtra="12sp"
                 android:text="Ver mas..."
+                android:textColor="@android:color/holo_green_dark"
                 android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvIdPublicacion"
+                android:layout_width="79dp"
+                android:layout_height="wrap_content"
+                android:text="TextView"
+                android:visibility="invisible" />
+
+            <TextView
+                android:id="@+id/tvTipoPubblicacion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="TextView"
+                android:visibility="invisible" />
         </LinearLayout>
 
 

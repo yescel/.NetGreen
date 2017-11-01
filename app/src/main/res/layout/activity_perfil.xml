@@ -13,20 +13,27 @@
             android:layout_height="163dp">
 
         <ImageView
-                android:layout_width="176dp"
-                android:layout_height="177dp"
-                app:srcCompat="@drawable/ic_user"
-                android:id="@+id/imageView"
-                android:layout_centerVertical="true"
-                android:layout_centerHorizontal="true" />
+            android:id="@+id/ivFotoUsuario_Perfil"
+            android:layout_width="wrap_content"
+            android:layout_height="177dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/tvNomUsuario_Perfil"
+            app:srcCompat="@drawable/ic_user" />
 
-            <TextView
-                android:text="Nombre usuario"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/tvNomUsuario"
-                android:layout_alignParentTop="true"
-                android:layout_centerHorizontal="true" />
+        <TextView
+            android:id="@+id/tvNomUsuario_Perfil"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:text="Nombre usuario"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat"
+            android:textSize="24sp"
+            android:textStyle="bold" />
         </RelativeLayout>
 
     <RelativeLayout

@@ -1,5 +1,7 @@
 package com.tallerandroid.netgreen;
 
+import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 import android.widget.ImageView;
 
 /**
@@ -7,10 +9,18 @@ import android.widget.ImageView;
  */
 
 public class Ranking {
-    private ImageView ivImagen;
+    private Bitmap imagen;
     private String nomUsuario;
-    private ImageView ivInsignida;
+    private Drawable ivInsignida;
     private String puntos;
+
+    public Bitmap getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(Bitmap imagen) {
+        this.imagen = imagen;
+    }
 
     public String getPuntos() {
         return puntos;
@@ -20,12 +30,6 @@ public class Ranking {
         this.puntos = puntos;
     }
 
-    public ImageView getIvImagen() {
-        return ivImagen;
-    }
-    public void setIvImagen(ImageView ivImagen) {
-        this.ivImagen = ivImagen;
-    }
 
     public String getNomUsuario(){
         return nomUsuario;
@@ -33,8 +37,8 @@ public class Ranking {
     public void setNomUsuario(String nomUsuario) {   this.nomUsuario = nomUsuario;  }
 
 
-    public ImageView getIvInsignida() { return ivInsignida; }
-    public void setIvInsignida(ImageView ivInsignida) {
+    public Drawable getIvInsignida() { return ivInsignida; }
+    public void setIvInsignida(Drawable ivInsignida) {
         this.ivInsignida = ivInsignida;
     }
 
