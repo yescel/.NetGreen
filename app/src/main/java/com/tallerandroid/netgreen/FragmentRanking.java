@@ -58,6 +58,7 @@ public class FragmentRanking extends Fragment {
 
         aRanking = new ArrayList<>();
         lvRanking = (ListView) getView().findViewById(R.id.lvRanking);
+        lvRanking.setEmptyView(getView().findViewById(R.id.loadListView_ranking));
         adaptadorListaRanking = new AdaptadorListaRanking(getActivity(), aRanking);
         lvRanking.setAdapter(adaptadorListaRanking);
 
@@ -141,7 +142,7 @@ public class FragmentRanking extends Fragment {
             }
             else
             {
-
+                lvRanking.setEmptyView(getView().findViewById(R.id.emptyListView_ranking));
             }
         }
     }

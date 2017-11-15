@@ -26,16 +26,16 @@
                     android:layout_height="match_parent">
 
                     <ImageView
-                        android:id="@+id/imageView6"
+                        android:id="@+id/ivUsuario_Detalle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        app:srcCompat="@android:drawable/ic_menu_gallery"
                         android:layout_alignParentBottom="true"
-                        android:layout_alignParentRight="true"
                         android:layout_alignParentEnd="true"
-                        android:layout_alignParentTop="true"
                         android:layout_alignParentLeft="true"
-                        android:layout_alignParentStart="true" />
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        app:srcCompat="@android:drawable/ic_menu_gallery" />
                 </RelativeLayout>
 
                 <LinearLayout
@@ -55,6 +55,8 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="0.03"
                         android:text="Usuario"
+                        android:textAppearance="@style/TextAppearance.AppCompat"
+                        android:textSize="18sp"
                         android:textStyle="bold" />
 
                     <TextView
@@ -63,7 +65,8 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="0.05"
                         android:text="Nombre publicación"
-                        android:textStyle="bold" />
+                        android:textAppearance="@style/TextAppearance.AppCompat"
+                        android:textSize="18sp" />
 
                 </LinearLayout>
 
@@ -80,7 +83,7 @@
                     android:weightSum="1">
 
                     <TextView
-                        android:id="@+id/tvDescripcion"
+                        android:id="@+id/tvDescripcion_Detalle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="0.50"

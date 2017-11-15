@@ -5,86 +5,108 @@
     android:layout_height="match_parent"
     android:descendantFocusability="blocksDescendants">
 
-    <ImageView
-        android:layout_width="57dp"
-        android:layout_height="111dp"
-        app:srcCompat="@android:drawable/ic_input_add"
-        android:id="@+id/ivUsuario" />
-
-    <LinearLayout
-        android:orientation="vertical"
+    <android.support.v7.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="109dp">
+        android:layout_height="wrap_content"
+        app:cardElevation="4dp">
 
-        <TextView
-            android:id="@+id/tvUsuario_Inicio"
-            android:layout_width="290dp"
-            android:layout_height="wrap_content"
-            android:text="Usuario"
-            android:textAlignment="viewStart"
-            android:textAppearance="@style/TextAppearance.AppCompat"
-            android:textColor="@color/colorNegro"
-            android:textSize="18sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/tvFechaPublicacion_Inicio"
-            android:layout_width="290dp"
-            android:layout_height="wrap_content"
-            android:text="Fecha"
-            android:textAppearance="@style/TextAppearance.AppCompat"
-            android:textColor="@color/common_google_signin_btn_text_light_default"
-            android:textSize="10sp" />
-
-        <TextView
-            android:id="@+id/tvPublicacion_Inicio"
-            android:layout_width="290dp"
-            android:layout_height="wrap_content"
-            android:text="Nombre publicacion"
-            android:textAppearance="@style/TextAppearance.AppCompat"
-            android:textSize="14sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/tvDescripcion_Inicio"
-            android:layout_width="290dp"
-            android:layout_height="wrap_content"
-            android:text="Descripcion"
-            android:textAppearance="@style/TextAppearance.AppCompat" />
-
-
-        <LinearLayout
-            android:orientation="horizontal"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
 
-            <TextView
-                android:id="@+id/tvVerMas_Inicio"
-                android:layout_width="96dp"
-                android:layout_height="20dp"
-                android:lineSpacingExtra="12sp"
-                android:text="Ver mas..."
-                android:textColor="@android:color/holo_green_dark"
-                android:textStyle="bold" />
+            <ImageView
+                android:id="@+id/ivUsuario"
+                android:layout_width="111dp"
+                android:layout_height="111dp"
+                android:layout_alignBottom="@+id/linearLayout"
+                android:layout_alignParentTop="true"
+                android:layout_marginLeft="1dp"
+                android:layout_marginTop="1dp"
+                android:paddingTop="1dp"
+                app:srcCompat="@android:drawable/ic_input_add" />
 
-            <TextView
-                android:id="@+id/tvIdPublicacion"
-                android:layout_width="79dp"
+            <LinearLayout
+                android:id="@+id/linearLayout"
+                android:layout_width="217dp"
                 android:layout_height="wrap_content"
-                android:text="TextView"
-                android:visibility="invisible" />
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginLeft="8dp"
+                android:layout_toEndOf="@+id/ivUsuario"
+                android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/tvTipoPubblicacion"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="TextView"
-                android:visibility="invisible" />
-        </LinearLayout>
+                <TextView
+                    android:id="@+id/tvUsuario_Inicio"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Usuario"
+                    android:textAlignment="viewStart"
+                    android:textAppearance="@style/TextAppearance.AppCompat"
+                    android:textColor="@color/colorNegro"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvFechaPublicacion_Inicio"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Fecha"
+                    android:textAppearance="@style/TextAppearance.AppCompat"
+                    android:textColor="@color/common_google_signin_btn_text_light_default"
+                    android:textSize="10sp" />
+
+                <TextView
+                    android:id="@+id/tvPublicacion_Inicio"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Nombre publicacion"
+                    android:textAppearance="@style/TextAppearance.AppCompat"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvDescripcion_Inicio"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Descripcion"
+                    android:textAppearance="@style/TextAppearance.AppCompat" />
 
 
-    </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tvVerMas_Inicio"
+                        android:layout_width="96dp"
+                        android:layout_height="20dp"
+                        android:lineSpacingExtra="12sp"
+                        android:text="Ver mas..."
+                        android:textColor="@android:color/holo_green_dark"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tvIdPublicacion"
+                        android:layout_width="79dp"
+                        android:layout_height="wrap_content"
+                        android:text="TextView"
+                        android:visibility="invisible" />
+
+                    <TextView
+                        android:id="@+id/tvTipoPubblicacion"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="TextView"
+                        android:visibility="invisible" />
+                </LinearLayout>
+
+
+            </LinearLayout>
+        </RelativeLayout>
+
+    </android.support.v7.widget.CardView>
 
 
 </LinearLayout>

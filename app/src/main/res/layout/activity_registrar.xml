@@ -48,12 +48,12 @@
             android:layout_height="match_parent">
 
             <EditText
-                android:id="@+id/txtName"
+                android:id="@+id/etNombreUsuario_Ajustes"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignLeft="@+id/txtEmail"
+                android:layout_alignLeft="@+id/etCorreoUsuario_Ajustesl"
                 android:layout_alignParentTop="true"
-                android:layout_alignStart="@+id/txtEmail"
+                android:layout_alignStart="@+id/etCorreoUsuario_Ajustesl"
                 android:layout_marginTop="22dp"
                 android:ems="16"
                 android:fontFamily="sans-serif"
@@ -62,10 +62,10 @@
                 android:textColor="@android:color/black"
                 android:textColorHint="@color/colorVerdeOscuro" />
             <EditText
-                android:id="@+id/txtEmail"
+                android:id="@+id/etCorreoUsuario_Ajustesl"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/txtName"
+                android:layout_below="@+id/etNombreUsuario_Ajustes"
                 android:layout_centerHorizontal="true"
                 android:ems="16"
                 android:fontFamily="sans-serif"
@@ -75,12 +75,12 @@
                 android:textColorHint="@color/colorVerdeOscuro" />
 
             <EditText
-                android:id="@+id/txtPassword"
+                android:id="@+id/etPassword_Ajustes"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignLeft="@+id/txtEmail"
-                android:layout_alignStart="@+id/txtEmail"
-                android:layout_below="@+id/txtEmail"
+                android:layout_alignLeft="@+id/etCorreoUsuario_Ajustesl"
+                android:layout_alignStart="@+id/etCorreoUsuario_Ajustesl"
+                android:layout_below="@+id/etCorreoUsuario_Ajustesl"
                 android:ems="16"
                 android:fontFamily="sans-serif"
                 android:hint="Contraseña"
@@ -89,12 +89,12 @@
                 android:textColorHint="@color/colorVerdeOscuro" />
 
             <EditText
-                android:id="@+id/txtPassword2"
+                android:id="@+id/etPassword2_Ajustes"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignLeft="@+id/txtPassword"
-                android:layout_alignStart="@+id/txtPassword"
-                android:layout_below="@+id/txtPassword"
+                android:layout_alignLeft="@+id/etPassword_Ajustes"
+                android:layout_alignStart="@+id/etPassword_Ajustes"
+                android:layout_below="@+id/etPassword_Ajustes"
                 android:ems="16"
                 android:fontFamily="sans-serif"
                 android:hint="Repetir contraseña"
@@ -106,9 +106,9 @@
                 android:id="@+id/radHombre"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignLeft="@+id/txtPassword2"
-                android:layout_alignStart="@+id/txtPassword2"
-                android:layout_below="@+id/txtPassword2"
+                android:layout_alignLeft="@+id/etPassword2_Ajustes"
+                android:layout_alignStart="@+id/etPassword2_Ajustes"
+                android:layout_below="@+id/etPassword2_Ajustes"
                 android:checked="true"
                 android:text="Hombre" />
 
@@ -117,7 +117,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Mujer"
-                android:layout_below="@+id/txtPassword2"
+                android:layout_below="@+id/etPassword2_Ajustes"
                 android:layout_toRightOf="@+id/radHombre"
                 android:layout_toEndOf="@+id/radHombre"
                 android:layout_marginLeft="23dp"

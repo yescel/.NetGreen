@@ -50,6 +50,8 @@ public class FragmentInicio extends Fragment {
     String[] categorias;
     String[] subcategorias;
 
+
+
     public static FragmentInicio newInstance() {
         FragmentInicio fragment = new FragmentInicio();
         return fragment;
@@ -85,6 +87,7 @@ public class FragmentInicio extends Fragment {
 
         publicaciones = new ArrayList<>();
         lvPublicaciones = (ListView) getView().findViewById(R.id.lvInicio);
+        lvPublicaciones.setEmptyView(getView().findViewById(R.id.loadListView_inicio));
         adaptadorLista = new AdaptadorListaInicio(getActivity(), publicaciones);
 
         TareaWSCargarInicio tarea = new TareaWSCargarInicio();
@@ -146,7 +149,6 @@ public class FragmentInicio extends Fragment {
                     imagen = BitmapFactory.decodeByteArray(decodeString,0, decodeString.length);
                     String idPublicacion = Integer.toString(id);
                     p1 = new Inicio();
-                    p1.setImagen(null);
                     p1.setNomUsuario(usuario);
                     p1.setFechaPublicacion(fecha);
                     p1.setNomPublicacion(nombrePublicacion);

@@ -12,24 +12,18 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
-import org.apache.http.client.entity.UrlEncodedFormEntityHC4;
 import org.apache.http.client.methods.HttpPost;
-import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
-import org.apache.http.util.EntityUtils;
-import org.json.JSONObject;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.jar.Attributes;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -58,10 +52,10 @@ public class RegistrarActivity extends AppCompatActivity {
 
         //intent = (TextView) findViewById(R.id.link_login);
         btnInsertar = (Button)findViewById(R.id.btnRegistrar);
-        txtNombre = (EditText)findViewById(R.id.txtName);
-        txtEmail = (EditText)findViewById(R.id.txtEmail);
-        txtPassword = (EditText)findViewById(R.id.txtPassword);
-        txtPasswordR = (EditText)findViewById(R.id.txtPassword2);
+        txtNombre = (EditText)findViewById(R.id.etNombreUsuario_Ajustes);
+        txtEmail = (EditText)findViewById(R.id.etCorreoUsuario_Ajustesl);
+        txtPassword = (EditText)findViewById(R.id.etPassword_Ajustes);
+        txtPasswordR = (EditText)findViewById(R.id.etPassword2_Ajustes);
         rbtnHombre = (RadioButton)findViewById(R.id.radHombre);
 
         _loginLink.setOnClickListener(new View.OnClickListener() {

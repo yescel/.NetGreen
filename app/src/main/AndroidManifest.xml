@@ -11,7 +11,7 @@
     -->
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-
+    <uses-sdk android:minSdkVersion="14" android:targetSdkVersion="23" android:maxSdkVersion="23"/>
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -46,7 +46,6 @@
         <activity android:name=".DashboardActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -68,12 +67,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".PerfilActivity"></activity>
-        <activity android:name=".DetalleItemInicioActivity"></activity>
-        <activity android:name=".DetalleItemMiActividadActivity"></activity>
-        <activity android:name=".DetalleItemMiNoticiaActivity"></activity>
-        <activity android:name=".MapaActivity"></activity>
-        <activity android:name=".AjustesCuentaActivity"></activity>
+        <activity android:name=".PerfilActivity" android:parentActivityName=".DashboardActivity">
+            <meta-data android:name="android.support.PARENT_ACTIVITY" android:value=".DashboardActivity"></meta-data>
+        </activity>
+        <activity android:name=".DetalleItemInicioActivity" android:parentActivityName=".DashboardActivity"></activity>
+        <activity android:name=".DetalleItemMiActividadActivity" android:parentActivityName=".PerfilActivity"></activity>
+        <activity android:name=".DetalleItemMiNoticiaActivity" android:parentActivityName=".PerfilActivity"></activity>
+        <activity android:name=".MapaActivity" android:parentActivityName=".DashboardActivity"></activity>
+        <activity android:name=".AjustesCuentaActivity" android:parentActivityName=".DashboardActivity"></activity>
+        <activity android:name=".PatrocinadoresActivity" android:parentActivityName=".DashboardActivity"></activity>
 
     </application>
 

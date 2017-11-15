@@ -1,5 +1,6 @@
 package com.tallerandroid.netgreen;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
@@ -14,6 +15,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import org.apache.http.HttpResponse;
@@ -322,7 +324,9 @@ public class FragmentCrearNot extends Fragment {
 
             if (result)
             {
-                Toast.makeText(getContext(), "Noticia en validacion!", Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(), "Tu noticia ha sido creada", Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(getActivity(), DashboardActivity.class);
+                startActivity(intent);
             }
             else
             {

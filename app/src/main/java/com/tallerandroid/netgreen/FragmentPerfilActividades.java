@@ -1,5 +1,6 @@
 package com.tallerandroid.netgreen;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -14,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
@@ -30,6 +32,9 @@ import java.util.ArrayList;
  */
 
 public class FragmentPerfilActividades extends Fragment {
+    public static final String ID_ACTIVIDAD = "com.tallerandroid.netgreen.ID_ACTIVIDAD";
+    public static final String TIPO_ACTIVIDAD = "com.tallerandroid.netgreen.TIPO_ACTIVIDAD";
+
     ListView lvPublicaciones;
     AdaptadorListaInicio adaptadorLista;
     private ArrayList<Inicio> publicaciones;
@@ -53,6 +58,7 @@ public class FragmentPerfilActividades extends Fragment {
 
         publicaciones = new ArrayList<>();
         lvPublicaciones = (ListView) getView().findViewById(R.id.lvActividades_Perfil);
+        //lvPublicaciones.setEmptyView(getView().findViewById(R.id.loadListView_perfil_actividades));
         adaptadorLista = new AdaptadorListaInicio(getActivity(), publicaciones);
 
         UsuarioLogueadoSQLiteHelper usdbh = new UsuarioLogueadoSQLiteHelper(getContext(), "DBUsuario", null, 1);
@@ -65,16 +71,24 @@ public class FragmentPerfilActividades extends Fragment {
         TareaWSCargarActividadesPerfil tarea = new TareaWSCargarActividadesPerfil();
         tarea.execute(idUsuario);
 
-        lvPublicaciones.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            lvPublicaciones.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> a, View v, int position, long id) {
+                TextView tvId = (TextView) v.findViewById(R.id.tvIdPublicacion);
+                TextView tvTipo = (TextView) v.findViewById(R.id.tvTipoPubblicacion);
+                String txtId = tvId.getText().toString();
+                String txtTipo = tvTipo.getText().toString();
 
                 Intent intent = new Intent(getActivity(), DetalleItemMiActividadActivity.class);
+                intent.putExtra(ID_ACTIVIDAD, txtId);
+                intent.putExtra(TIPO_ACTIVIDAD, txtTipo);
                 startActivity(intent);
-
             }
         });
     }
     private class TareaWSCargarActividadesPerfil extends AsyncTask<String,Integer,Boolean> {
+        private int id;
+        private String tipoPublicacion;
         private String fecha;
         private String nombrePublicacion;
         private String descripcion;
@@ -97,20 +111,27 @@ public class FragmentPerfilActividades extends Fragment {
                 String respStr = EntityUtils.toString(resp.getEntity());
 
                 JSONArray respJSON = new JSONArray(respStr);
+                if(respJSON.length() == 0)
+                    resul = false;
 
                 for(int i=0; i < respJSON.length(); i++) {
                     JSONObject jsonobject = respJSON.getJSONObject(i);
+                    id = jsonobject.getInt("idPublicacion");
+                    String idPublicacion = Integer.toString(id);
+                    tipoPublicacion = jsonobject.getString("tipo");
                     fecha  = jsonobject.getString("fecha_hora_creacion");
                     nombrePublicacion = jsonobject.getString("nombrePublicacion");
                     descripcion = jsonobject.getString("descripcion");
                     imagen = BitmapFactory.decodeResource(getContext().getResources(),
-                            R.drawable.ic_star_outline_black_36dp);
+                            R.drawable.ic_human_greeting_grey600_48dp);
 
                     p1 = new Inicio();
                     p1.setFechaPublicacion(fecha);
                     p1.setNomPublicacion(nombrePublicacion);
                     p1.setDescripcion(descripcion);
                     p1.setImagen(imagen);
+                    p1.setIdPublicacion(idPublicacion);
+                    p1.setTipo(tipoPublicacion);
                     publicaciones.add(p1);
                 }
 
@@ -125,7 +146,21 @@ public class FragmentPerfilActividades extends Fragment {
 
             return resul;
         }
+        /*
+        ProgressDialog m_dialog = new ProgressDialog(getContext());
 
+        @Override
+        protected void onPreExecute() {
+            // TODO Auto-generated method stub
+            super.onPreExecute();
+            // initialize the dialog
+            m_dialog.setTitle("Loading...");
+            m_dialog.setMessage("Please wait while loading...");
+            m_dialog.setIndeterminate(true);
+            m_dialog.setCancelable(true);
+            m_dialog.show();
+
+        }*/
         protected void onPostExecute(Boolean result) {
 
             if (result)
@@ -134,7 +169,7 @@ public class FragmentPerfilActividades extends Fragment {
             }
             else
             {
-
+                lvPublicaciones.setEmptyView(getActivity().findViewById(R.id.emptyListView_perfil_actividades));
             }
         }
     }

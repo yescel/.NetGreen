@@ -10,7 +10,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 
 public class MiFragmentPagerAdapterPerfil extends FragmentPagerAdapter {
     final int PAGE_COUNT = 4;
-    private String tabTitles[] = new String[] { "Info", "Fotos", "Actividades", "Noticias"};
+    private String tabTitles[] = new String[] { "Información", "Fotos", "Actividades", "Noticias"};
 
     public MiFragmentPagerAdapterPerfil(FragmentManager fm) {
         super(fm);

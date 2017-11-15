@@ -39,6 +39,7 @@ public class FragmentPerfil extends Fragment {
     TextView tvCorreo;
     TextView tvNombreUsuario;
     TextView tvPuntos;
+    TextView tvGenero;
 
     private String nombre;
     private Bitmap imagen;
@@ -69,11 +70,10 @@ public class FragmentPerfil extends Fragment {
         ivFotoPerfil = (ImageView) getActivity().findViewById(R.id.ivFotoUsuario_Perfil);
 
         tvNombreCompleto = (TextView) getActivity().findViewById(R.id.tvNombreCompleto_Informacion);
-        radHombre = (RadioButton) getActivity().findViewById(R.id.radHombre_Infomacion);
-        radMujer = (RadioButton) getActivity().findViewById(R.id.radMujer_Informacion);
         tvCorreo = (TextView) getActivity().findViewById(R.id.tvEmailUsuario_Informacion);
         tvNombreUsuario = (TextView) getActivity().findViewById(R.id.tvNombreUsuario_Informacion);
         tvPuntos = (TextView) getActivity().findViewById(R.id.tvPuntos_Informacion);
+        tvGenero = (TextView) getActivity().findViewById(R.id.tvGenero_Informacion);
 
         UsuarioLogueadoSQLiteHelper usdbh = new UsuarioLogueadoSQLiteHelper(getContext(), "DBUsuario", null, 1);
         db = usdbh.getWritableDatabase();
@@ -136,20 +136,17 @@ public class FragmentPerfil extends Fragment {
                     }
                     else {
                         tvNombreEncabezado.setText(usuario);
-                        tvNombreUsuario.setText(usuario);
+                        tvNombreUsuario.setText("Usuario: "+usuario);
                     }
                     ivFotoPerfil.setImageBitmap(imagen);
-                    tvNombreCompleto.setText(nombre);
-                    if(genero == "Hombre"){
-                        radMujer.setChecked(false);
-                        radHombre.setChecked(true);
-                    }
-                    else {
-                        radMujer.setChecked(true);
-                        radHombre.setChecked(false);
-                    }
-                    tvCorreo.setText(correo);
-                    tvPuntos.setText("Puntos acumulados:" + puntos);
+                    tvNombreCompleto.setText("Nombre: "+nombre);
+                    if(genero == "Hombre")
+                        tvGenero.setText("Género: Hombre");
+                    else
+                        tvGenero.setText("Género: Mujer");
+
+                    tvCorreo.setText("Correo electrónico: "+correo);
+                    tvPuntos.setText("Puntos acumulados: " + puntos);
 
 
 

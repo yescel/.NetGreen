@@ -38,14 +38,14 @@
             android:orientation="horizontal">
 
             <EditText
-                android:id="@+id/txtEmail"
+                android:id="@+id/etCorreoUsuario_Ajustesl"
                 android:layout_width="wrap_content"
                 android:layout_height="34dp"
-                android:layout_above="@+id/txtPassword"
-                android:layout_alignEnd="@+id/txtPassword"
-                android:layout_alignLeft="@+id/txtPassword"
-                android:layout_alignRight="@+id/txtPassword"
-                android:layout_alignStart="@+id/txtPassword"
+                android:layout_above="@+id/etPassword_Ajustes"
+                android:layout_alignEnd="@+id/etPassword_Ajustes"
+                android:layout_alignLeft="@+id/etPassword_Ajustes"
+                android:layout_alignRight="@+id/etPassword_Ajustes"
+                android:layout_alignStart="@+id/etPassword_Ajustes"
                 android:background="@color/cardview_light_background"
                 android:drawableLeft="@drawable/ic_usuario"
                 android:ems="16"
@@ -66,7 +66,7 @@
             android:weightSum="1">
 
             <EditText
-                android:id="@+id/txtPassword"
+                android:id="@+id/etPassword_Ajustes"
                 android:layout_width="wrap_content"
                 android:layout_height="34dp"
                 android:layout_centerHorizontal="true"
@@ -94,7 +94,7 @@
                 android:id="@+id/btnRegistrar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/txtPassword"
+                android:layout_below="@+id/etPassword_Ajustes"
                 android:layout_centerHorizontal="true"
                 android:background="@drawable/boton_pulsado"
                 android:ems="16"

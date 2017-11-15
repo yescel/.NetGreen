@@ -2,39 +2,58 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/cardview_light_background"
+    android:orientation="vertical"
     tools:context=".PerfilActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="57dp">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="?attr/colorPrimary"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="?attr/actionBarTheme"
+            android:visibility="visible">
+
+            <TextView
+                android:id="@+id/tvNomUsuario_Perfil"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Perfil"
+                android:textAlignment="center"
+                android:textColor="@color/cardview_light_background"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+        </android.support.v7.widget.Toolbar>
+    </RelativeLayout>
 
 
     <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="163dp">
+        android:layout_width="match_parent"
+        android:layout_height="163dp"
+        android:background="@color/cardview_light_background"
+        android:elevation="4dp">
 
         <ImageView
             android:id="@+id/ivFotoUsuario_Perfil"
             android:layout_width="wrap_content"
-            android:layout_height="177dp"
+            android:layout_height="match_parent"
             android:layout_alignParentEnd="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentRight="true"
             android:layout_alignParentStart="true"
             android:layout_below="@+id/tvNomUsuario_Perfil"
-            app:srcCompat="@drawable/ic_user" />
+            app:srcCompat="@drawable/ic_user"
+            android:layout_alignParentBottom="true" />
 
-        <TextView
-            android:id="@+id/tvNomUsuario_Perfil"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:text="Nombre usuario"
-            android:textAlignment="center"
-            android:textAppearance="@style/TextAppearance.AppCompat"
-            android:textSize="24sp"
-            android:textStyle="bold" />
-        </RelativeLayout>
+    </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -44,7 +63,10 @@
             android:id="@+id/appbartabsPerfil"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/colorPrimary" />
+            android:background="@color/cardview_light_background"
+            android:elevation="2dp"
+            app:tabIndicatorColor="@color/colorPrimary"
+            app:tabSelectedTextColor="@color/colorPrimary" />
 
         <FrameLayout
             android:layout_width="wrap_content"

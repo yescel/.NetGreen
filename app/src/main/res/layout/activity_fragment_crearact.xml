@@ -5,100 +5,117 @@
     android:padding="16dp"
     tools:context="com.tallerandroid.netgreen.FragmentCrearAct">
 
-    <LinearLayout
-        android:orientation="vertical"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:weightSum="1">
+        android:layout_height="match_parent">
 
         <LinearLayout
-            android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="50dp">
-
-            <Spinner
-                android:layout_width="259dp"
-                android:layout_height="wrap_content"
-                android:id="@+id/spinnerCategorias_CrearAct"
-                android:layout_weight="1.44" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="50dp">
-
-            <Spinner
-                android:layout_width="259dp"
-                android:layout_height="wrap_content"
-                android:id="@+id/spinnerSubCategorias_CrearAct"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="50dp">
-
-            <EditText
-                android:id="@+id/etNombreCreAct"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="Nombre de actividad"
-                android:inputType="textPersonName" />
-        </LinearLayout>
-
-        <LinearLayout
+            android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <EditText
-                android:id="@+id/etDescripcionCreAct"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.05"
-                android:ems="10"
-                android:hint="Descripción de la actividad"
-                android:inputType="textMultiLine" />
+            android:weightSum="1">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="50dp"
                 android:orientation="horizontal">
 
-                <EditText
-                    android:id="@+id/etFechaCreAct"
-                    android:layout_width="match_parent"
+                <Spinner
+                    android:id="@+id/spinnerCategorias_CrearAct"
+                    android:layout_width="259dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:ems="10"
-                    android:hint="yyyy-mm-dd"
-                    android:inputType="date" />
-
-                <EditText
-                    android:id="@+id/etHoraCreAct"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:ems="10"
-                    android:hint="hh:mm"
-                    android:inputType="time" />
+                    android:layout_weight="1.44" />
 
             </LinearLayout>
 
-            <Button
-                android:text="Registrar"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/btnRegistrarActividad"
-                android:layout_weight="0.00"
-                android:background="@drawable/boton_pulsado"
-                android:textColor="@color/cardview_light_background"
-                />
-        </LinearLayout>
+                android:layout_height="50dp"
+                android:orientation="horizontal">
 
-    </LinearLayout>
+                <Spinner
+                    android:id="@+id/spinnerSubCategorias_CrearAct"
+                    android:layout_width="259dp"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/etNombreCreAct"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="Nombre de actividad"
+                    android:inputType="textPersonName" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:weightSum="1">
+
+                <EditText
+                    android:id="@+id/etDescripcionCreAct"
+                    android:layout_width="match_parent"
+                    android:layout_height="136dp"
+                    android:ems="10"
+                    android:hint="Descripción de la actividad"
+                    android:inputType="textMultiLine" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:visibility="invisible">
+
+                    <EditText
+                        android:id="@+id/etFechaCreAct"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:hint="yyyy-mm-dd"
+                        android:inputType="date" />
+
+                    <EditText
+                        android:id="@+id/etHoraCreAct"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:hint="hh:mm"
+                        android:inputType="time" />
+
+                </LinearLayout>
+
+                <DatePicker
+                    android:id="@+id/dtFechaActividad"
+                    android:layout_width="match_parent"
+                    android:layout_height="380dp"
+                    android:layout_weight="9.29" />
+
+                <TimePicker
+                    android:id="@+id/tmHoraActividad"
+                    android:layout_width="match_parent"
+                    android:layout_height="380dp" />
+
+                <Button
+                    android:id="@+id/btnRegistrarActividad"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.00"
+                    android:background="@drawable/boton_pulsado"
+                    android:text="Registrar"
+                    android:textColor="@color/cardview_light_background" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
 </FrameLayout>

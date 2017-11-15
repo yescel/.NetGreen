@@ -1,157 +1,149 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ScrollView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="60dp"
+        android:layout_weight="0.18"
+        android:orientation="horizontal">
 
-        <LinearLayout
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:weightSum="1">
+            android:layout_weight="1"
+            android:background="?attr/colorPrimary"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="?attr/actionBarTheme"
+            android:visibility="visible">
 
             <TextView
-                android:id="@+id/textView2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="61dp"
-                android:text="Ajustes de cuenta"
+                android:text="Ajustes de cuenta "
                 android:textAlignment="center"
-                android:textAppearance="@style/TextAppearance.AppCompat.Title" />
+                android:textColor="@color/cardview_light_background"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+        </android.support.v7.widget.Toolbar>
+    </LinearLayout>
 
-            <LinearLayout
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:orientation="vertical"
+        android:weightSum="1"
+        android:layout_alignParentBottom="true">
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="199dp">
+
+            <ImageView
+                android:id="@+id/ivPerfilAjustes"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:visibility="invisible">
+                android:layout_height="226dp"
+                android:background="@mipmap/logo" />
 
-                <TextView
-                    android:id="@+id/textView7"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="TextView" />
-            </LinearLayout>
+        </android.support.v7.widget.CardView>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
+        <Button
+            android:id="@+id/btnSeleccionarFotoPerfil"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Seleccionar foto de perfil"
+            android:layout_marginTop="20dp"/>
 
-                <ImageView
-                    android:id="@+id/imageView5"
-                    android:layout_width="75dp"
-                    android:layout_height="81dp"
-                    app:srcCompat="@android:drawable/ic_menu_gallery" />
+        <EditText
+            android:id="@+id/etNombreCompleto_Ajustes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:ems="10"
+            android:hint="Nombre completo"
+            android:inputType="textPersonName" />
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:weightSum="1">
+        <EditText
+            android:id="@+id/etNombreUsuario_Ajustes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/etNombreCompleto_Ajustes"
+            android:ems="16"
+            android:fontFamily="sans-serif"
+            android:hint="Nuevo nombre de usuario"
+            android:inputType="text"
+            android:textColor="@android:color/black"
+            android:textColorHint="@color/colorVerdeOscuro" />
 
-                    <TextView
-                        android:id="@+id/textView8"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="TextView"
-                        android:visibility="invisible" />
+        <EditText
+            android:id="@+id/etCorreoUsuario_Ajustesl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/etNombreUsuario_Ajustes"
+            android:layout_marginTop="11dp"
+            android:ems="16"
+            android:fontFamily="sans-serif"
+            android:hint="Cambiar correo"
+            android:inputType="textEmailAddress"
+            android:textColor="@android:color/black"
+            android:textColorHint="@color/colorVerdeOscuro" />
 
-                    <Button
-                        android:id="@+id/btnSeleccionarFotoPerfil"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Seleccionar foto de perfil" />
-                </LinearLayout>
+        <EditText
+            android:id="@+id/etPassword_Ajustes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:ems="16"
+            android:fontFamily="sans-serif"
+            android:hint="Cambiar contraseña"
+            android:inputType="textPassword"
+            android:selectAllOnFocus="true"
+            android:textColor="@android:color/black"
+            android:textColorHint="@color/colorVerdeOscuro" />
 
-            </LinearLayout>
+        <EditText
+            android:id="@+id/etPassword2_Ajustes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/etPassword_Ajustes"
+            android:ems="16"
+            android:fontFamily="sans-serif"
+            android:hint="Repetir contraseña"
+            android:inputType="textPassword"
+            android:textColor="@android:color/black"
+            android:textColorHint="@color/colorVerdeOscuro" />
 
-            <EditText
-                android:id="@+id/txtName"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/textView2"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="78dp"
-                android:ems="16"
-                android:fontFamily="sans-serif"
-                android:hint="Nuevo nombre de usuario"
-                android:inputType="text"
-                android:textColor="@android:color/black"
-                android:textColorHint="@color/colorVerdeOscuro" />
+        <Button
+            android:id="@+id/btnGuardarCambios"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/etPassword2_Ajustes"
+            android:layout_marginTop="20dp"
+            android:layout_weight="0.29"
+            android:background="@drawable/boton_pulsado"
+            android:ems="16"
+            android:text="MODIFICAR CUENTA"
+            android:textColor="@color/cardview_light_background" />
 
-            <EditText
-                android:id="@+id/txtEmail"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignLeft="@+id/txtName"
-                android:layout_alignStart="@+id/txtName"
-                android:layout_below="@+id/txtName"
-                android:layout_marginTop="29dp"
-                android:ems="16"
-                android:fontFamily="sans-serif"
-                android:hint="Cambiar correo"
-                android:inputType="textEmailAddress"
-                android:textColor="@android:color/black"
-                android:textColorHint="@color/colorVerdeOscuro" />
-
-            <EditText
-                android:id="@+id/txtPassword"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignLeft="@+id/txtEmail"
-                android:layout_alignStart="@+id/txtEmail"
-                android:layout_below="@+id/txtEmail"
-                android:layout_marginTop="34dp"
-                android:ems="16"
-                android:fontFamily="sans-serif"
-                android:hint="Cambiar contraseña"
-                android:inputType="textPassword"
-                android:textColor="@android:color/black"
-                android:textColorHint="@color/colorVerdeOscuro" />
-
-            <EditText
-                android:id="@+id/txtPassword2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignLeft="@+id/txtPassword"
-                android:layout_alignStart="@+id/txtPassword"
-                android:layout_below="@+id/txtPassword"
-                android:layout_marginTop="33dp"
-                android:ems="16"
-                android:fontFamily="sans-serif"
-                android:hint="Repetir contraseña"
-                android:inputType="textPassword"
-                android:textColor="@android:color/black"
-                android:textColorHint="@color/colorVerdeOscuro" />
-
-            <TextView
-                android:id="@+id/tvContactanos"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="0.21"
-                android:text="Si pertenece a un organismo, favor de contactar a los administradores al correo netgreen2017@gmail.com"
-                android:textAlignment="center"/>
-
-            <Button
-                android:id="@+id/btnGuardarCambios"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_centerHorizontal="true"
-                android:layout_marginBottom="37dp"
-                android:background="@drawable/boton_pulsado"
-                android:ems="16"
-                android:text="MODIFICAR CUENTA"
-                android:textColor="@color/cardview_light_background" />
-        </LinearLayout>
-    </ScrollView>
+    </LinearLayout>
 
 
 </RelativeLayout>

@@ -37,9 +37,9 @@ public class LoginActivity extends AppCompatActivity {
     private SQLiteDatabase db;
 
 
-    @InjectView(R.id.txtEmail)
+    @InjectView(R.id.etCorreoUsuario_Ajustesl)
     EditText _emailText;
-    @InjectView(R.id.txtPassword)
+    @InjectView(R.id.etPassword_Ajustes)
     EditText _passwordText;
     @InjectView(R.id.btnRegistrar)
     Button _loginButton;
@@ -180,7 +180,7 @@ public class LoginActivity extends AppCompatActivity {
             String correo = params[0];
             String passw = params[1];
 
-            HttpGet del = new HttpGet("http://netgreen.org.mx/ws/consulta_usuario.php?correo=" + correo);
+            HttpGet del = new HttpGet("http://www.netgreen.org.mx/ws/consulta_usuario.php?correo="+ correo);
 
             del.setHeader("content-type", "application/json");
 

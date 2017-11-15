@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -13,10 +14,11 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TimePicker;
 import android.widget.Toast;
-
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.ClientProtocolException;
@@ -56,6 +58,9 @@ public class FragmentCrearAct extends Fragment {
     EditText txtDescripcion;
     EditText txtFecha;
     EditText txtHora;
+    DatePicker dtFechaActividad;
+    TimePicker tmHoraActividad;
+
     Button btnRegistrarAct;
 
     private SQLiteDatabase db;
@@ -85,6 +90,8 @@ public class FragmentCrearAct extends Fragment {
         txtDescripcion = (EditText) getActivity().findViewById(R.id.etDescripcionCreAct);
         txtFecha = (EditText) getActivity().findViewById(R.id.etFechaCreAct);
         txtHora = (EditText) getActivity().findViewById(R.id.etHoraCreAct);
+        dtFechaActividad = (DatePicker) getActivity().findViewById(R.id.dtFechaActividad);
+        tmHoraActividad = (TimePicker) getActivity().findViewById(R.id.tmHoraActividad);
 
         spinnerCategorias = (Spinner) getActivity().findViewById(R.id.spinnerCategorias_CrearAct);
         TareaWSCargarSpinnerCatAct cargarCat = new TareaWSCargarSpinnerCatAct();
@@ -115,10 +122,49 @@ public class FragmentCrearAct extends Fragment {
                 String strFechaPublicacion = formatoFecha.format(fechaActual) + " " +formatoHora.format(fechaActual);
 
                 try {
-                    String auxFechaActividad = txtFecha.getText().toString() + " " + txtHora.getText().toString() + ":00";
-                    SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-                    Date newDate = format.parse(auxFechaActividad);
-                    strFechaActividad = formatoFecha.format(newDate) + " " +formatoHora.format(newDate);
+                    //String auxFechaActividad = txtFecha.getText().toString() + " " + txtHora.getText().toString() + ":00";
+                    //SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                    //Date newDate = format.parse(auxFechaActividad);
+                    //strFechaActividad = formatoFecha.format(newDate) + " " + formatoHora.format(newDate);
+                    strFechaActividad = Integer.toString(dtFechaActividad.getYear());
+                    String longitudMes = Integer.toString(dtFechaActividad.getMonth());
+                    if(longitudMes.length() == 1)
+                        strFechaActividad+= "-0" + Integer.toString(dtFechaActividad.getMonth());
+                    else
+                        strFechaActividad+= "-" + Integer.toString(dtFechaActividad.getMonth());
+                    String longitudDia = Integer.toString(dtFechaActividad.getDayOfMonth());
+                    if(longitudDia.length() ==1)
+                        strFechaActividad+="-0" + Integer.toString(dtFechaActividad.getDayOfMonth());
+                    else
+                        strFechaActividad+="-" + Integer.toString(dtFechaActividad.getDayOfMonth());
+
+                    if(Build.VERSION.SDK_INT >= 23) {
+                        String longitudHora = Integer.toString(tmHoraActividad.getHour());
+                        String longitudMin = Integer.toString(tmHoraActividad.getMinute());
+                        if(longitudHora.length() == 1)
+                            strFechaActividad += " 0" + Integer.toString(tmHoraActividad.getHour());
+                        else
+                            strFechaActividad += " " + Integer.toString(tmHoraActividad.getHour());
+
+                        if(longitudMin.length() == 1)
+                            strFechaActividad += ":0"+tmHoraActividad.getMinute()+":00";
+                        else
+                            strFechaActividad += ":"+tmHoraActividad.getMinute()+":00";
+
+                    } else {
+                        String longitudHora = Integer.toString(tmHoraActividad.getCurrentHour());
+                        String longitudMin = Integer.toString(tmHoraActividad.getCurrentMinute());
+                        if(longitudHora.length() == 1)
+                            strFechaActividad += " 0" + tmHoraActividad.getCurrentHour();
+                        else
+                            strFechaActividad += " " + tmHoraActividad.getCurrentHour();
+
+                        if(longitudMin.length() == 1)
+                            strFechaActividad+=":0"+tmHoraActividad.getCurrentMinute()+":00";
+                        else
+                            strFechaActividad+=":"+tmHoraActividad.getCurrentMinute()+":00";
+
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -332,7 +378,9 @@ public class FragmentCrearAct extends Fragment {
 
             if (result)
             {
-                Toast.makeText(getContext(), "Actividad en validacion!", Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(), "Eres parte del cambio! Tu actividad ha sido creada", Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(getActivity(), DashboardActivity.class);
+                startActivity(intent);
             }
             else
             {
