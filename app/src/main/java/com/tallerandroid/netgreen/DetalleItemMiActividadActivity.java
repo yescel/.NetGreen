@@ -1,6 +1,8 @@
 package com.tallerandroid.netgreen;
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
@@ -18,14 +20,28 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
+import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
 import org.json.JSONArray;
 import org.json.JSONObject;
+
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 /**
  * Created by yesce on 08/10/2017.
@@ -43,6 +59,10 @@ public class DetalleItemMiActividadActivity extends AppCompatActivity {
     int seleccionSubCat = 0;
     private int idCategoria = 0;
     private int idCategoriaDetalle = 0;
+    String idPublicacion = "";
+    String tipoPublicacion = "";
+    private SQLiteDatabase db;
+    int intUsuario;
 
     EditText etNombrePub;
     EditText etDescripcionPub;
@@ -62,6 +82,7 @@ public class DetalleItemMiActividadActivity extends AppCompatActivity {
         etDescripcionPub = (EditText) findViewById(R.id.etDescripcion_ModificarAct);
         dtFechaAct = (DatePicker) findViewById(R.id.dtFecha_ModificarAct);
         tmHoraAct = (TimePicker) findViewById(R.id.tmHora_ModificarAct);
+        btnGuardarCambios = (Button)findViewById(R.id.btnGuardar_ModificarAct);
 
         spinnerCategorias = (Spinner) findViewById(R.id.spnCategoria_ModificarAct);
         TareaWSCargarSpinnerCatAct cargarCat = new TareaWSCargarSpinnerCatAct();
@@ -73,26 +94,121 @@ public class DetalleItemMiActividadActivity extends AppCompatActivity {
 
                         TareaWSCargarSpinnerSubCatAct cargarSubcat = new TareaWSCargarSpinnerSubCatAct();
                         cargarSubcat.execute(Integer.toString(position + 1));
+
+                        if(idSubcategorias != null) {
+                            for (int i = 0; i < idSubcategorias.length; i++) {
+                                String aux3 = Integer.toString(idCategoriaDetalle);
+                                String aux4 = idSubcategorias[i][0];
+                                if (aux3.equals(aux4)) {
+                                    seleccionSubCat = i;
+                                }
+                            }
+                            spinnerSubCategorias.setSelection(seleccionSubCat);
+                        }
+
                     }
                     public void onNothingSelected(AdapterView<?> parent) {
                     }
                 });
 
         Intent intent = getIntent();
-        String idPublicacion = intent.getStringExtra(FragmentInicio.ID_ACTIVIDAD);
-        String tipoPublicacion = intent.getStringExtra(FragmentInicio.TIPO_ACTIVIDAD);
-
-
+        idPublicacion = intent.getStringExtra(FragmentPerfilActividades.ID_ACTIVIDAD);
+        tipoPublicacion = intent.getStringExtra(FragmentPerfilActividades.TIPO_ACTIVIDAD);
         TareaWSCargarDetalle tarea3 = new TareaWSCargarDetalle();
         tarea3.execute(idPublicacion, tipoPublicacion);
 
+        UsuarioLogueadoSQLiteHelper usdbh = new UsuarioLogueadoSQLiteHelper(this, "DBUsuario", null, 1);
+        db = usdbh.getWritableDatabase();
 
-        btnGuardarCambios = (Button)findViewById(R.id.btnGuardar_ModificarAct);
+        Cursor c = db.rawQuery("SELECT idUsuario FROM Usuario", null);
+        if (c.moveToFirst()) {
+            intUsuario = c.getInt(0);
+        }
+
         btnGuardarCambios.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                FragmentManager fragmentManager = getSupportFragmentManager();
-                DialogoGuardarConfirmacion dialogo = new DialogoGuardarConfirmacion();
-                dialogo.show(fragmentManager, "tagPersonalizado");
+                int intCategoria = 1;
+                int intSubcategoria = 1;
+                //int intUsuario = 0;
+                String strFechaActividad ="";
+
+                Date fechaActual = new Date();
+                DateFormat formatoHora = new SimpleDateFormat("HH:mm:ss");
+                DateFormat formatoFecha = new SimpleDateFormat("yyyy-MM-dd");
+                String strFechaPublicacion = formatoFecha.format(fechaActual) + " " +formatoHora.format(fechaActual);
+
+                try {
+                    strFechaActividad = Integer.toString(dtFechaAct.getYear());
+                    String longitudMes = Integer.toString(dtFechaAct.getMonth());
+                    if(longitudMes.length() == 1)
+                        strFechaActividad+= "-0" + Integer.toString(dtFechaAct.getMonth());
+                    else
+                        strFechaActividad+= "-" + Integer.toString(dtFechaAct.getMonth());
+                    String longitudDia = Integer.toString(dtFechaAct.getDayOfMonth());
+                    if(longitudDia.length() ==1)
+                        strFechaActividad+="-0" + Integer.toString(dtFechaAct.getDayOfMonth());
+                    else
+                        strFechaActividad+="-" + Integer.toString(dtFechaAct.getDayOfMonth());
+
+                    if(Build.VERSION.SDK_INT >= 23) {
+                        String longitudHora = Integer.toString(tmHoraAct.getHour());
+                        String longitudMin = Integer.toString(tmHoraAct.getMinute());
+                        if(longitudHora.length() == 1)
+                            strFechaActividad += " 0" + Integer.toString(tmHoraAct.getHour());
+                        else
+                            strFechaActividad += " " + Integer.toString(tmHoraAct.getHour());
+
+                        if(longitudMin.length() == 1)
+                            strFechaActividad += ":0"+tmHoraAct.getMinute()+":00";
+                        else
+                            strFechaActividad += ":"+tmHoraAct.getMinute()+":00";
+
+                    } else {
+                        String longitudHora = Integer.toString(tmHoraAct.getCurrentHour());
+                        String longitudMin = Integer.toString(tmHoraAct.getCurrentMinute());
+                        if(longitudHora.length() == 1)
+                            strFechaActividad += " 0" + tmHoraAct.getCurrentHour();
+                        else
+                            strFechaActividad += " " + tmHoraAct.getCurrentHour();
+
+                        if(longitudMin.length() == 1)
+                            strFechaActividad+=":0"+tmHoraAct.getCurrentMinute()+":00";
+                        else
+                            strFechaActividad+=":"+tmHoraAct.getCurrentMinute()+":00";
+                    }
+                }
+                catch (Exception ex)
+                {
+                }
+                for(int i=0; i < idCategorias.length; i++) {
+                    String aux = spinnerCategorias.getSelectedItem().toString();
+                    String aux2 = idCategorias[i][1];
+                    if(aux.equals(aux2))
+                    {
+                        intCategoria = Integer.parseInt(idCategorias[i][0]);
+                        break;
+                    }
+                }
+
+                for(int i=0; i < idSubcategorias.length; i++) {
+                    String aux3 = spinnerSubCategorias.getSelectedItem().toString();
+                    String aux4 = idSubcategorias[i][1];
+                    if(aux3.equals(aux4))
+                    {
+                        intSubcategoria = Integer.parseInt(idSubcategorias[i][0]);
+                        break;
+                    }
+                }
+
+                TareaWSActualizarAct tarea = new TareaWSActualizarAct();
+                tarea.execute(
+                        idPublicacion,
+                        Integer.toString(intCategoria),
+                        Integer.toString(intSubcategoria),
+                        etNombrePub.getText().toString(),
+                        etDescripcionPub.getText().toString(),
+                        strFechaActividad);
+
             }
         });
 
@@ -100,9 +216,12 @@ public class DetalleItemMiActividadActivity extends AppCompatActivity {
         btnEliminar = (Button)findViewById(R.id.btnCancelarActividad);
         btnEliminar.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                FragmentManager fragmentManager = getSupportFragmentManager();
-                DialogoEliminarConfirmacion dialogo = new DialogoEliminarConfirmacion();
-                dialogo.show(fragmentManager, "tagPersonalizado");
+                TareaWSEstatusAct tarea = new TareaWSEstatusAct();
+                tarea.execute(
+                        idPublicacion,
+                        "cancelada");
+                TareaWSActualizarPuntos tarea2 = new TareaWSActualizarPuntos();
+                tarea2.execute(Integer.toString(intUsuario), "15", "restar");
             }
         });
 
@@ -110,9 +229,10 @@ public class DetalleItemMiActividadActivity extends AppCompatActivity {
         btnValidar = (Button)findViewById(R.id.btnValidarActividad);
         btnValidar.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                FragmentManager fragmentManager = getSupportFragmentManager();
-                DialogoValidarActividad dialogo = new DialogoValidarActividad();
-                dialogo.show(fragmentManager, "tagPersonalizado");
+                TareaWSEstatusAct tarea = new TareaWSEstatusAct();
+                tarea.execute(
+                        idPublicacion,
+                        "completada");
             }
         });
     }
@@ -177,16 +297,8 @@ public class DetalleItemMiActividadActivity extends AppCompatActivity {
                             seleccionCat = i;
                         }
                     }
-
                     spinnerCategorias.setSelection(seleccionCat);
-                    for (int i = 0; i < idSubcategorias.length; i++) {
-                        String aux3 = Integer.toString(idCategoriaDetalle);
-                        String aux4 = idSubcategorias[i][0];
-                        if (aux3.equals(aux4)) {
-                            seleccionSubCat = i;
-                        }
-                    }
-                    spinnerSubCategorias.setSelection(seleccionSubCat);
+
 
                     etNombrePub.setText(nombrePublicacion);
                     etDescripcionPub.setText(descripcion);
@@ -331,6 +443,191 @@ public class DetalleItemMiActividadActivity extends AppCompatActivity {
                 adaptador.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 spinnerSubCategorias.setAdapter(adaptador);
 
+            }
+            else
+            {
+
+            }
+        }
+    }
+
+    private class TareaWSActualizarAct extends AsyncTask<String,Integer,Boolean> {
+
+        protected Boolean doInBackground(String... params) {
+
+            boolean resul = true;
+
+            try
+            {
+                HttpClient httpClient;
+                List<NameValuePair> nameValuePairs;
+                HttpPost httpPost;
+                httpClient = new DefaultHttpClient();
+
+                httpPost = new HttpPost("http://netgreen.org.mx/ws/modificar_actividad.php");
+                nameValuePairs = new ArrayList<NameValuePair>(7 );
+                nameValuePairs.add(new BasicNameValuePair("idActividad", params[0]));
+                nameValuePairs.add(new BasicNameValuePair("idCategoria",params[1]));
+                nameValuePairs.add(new BasicNameValuePair("idCategoriaDetalle", params[2]));
+                nameValuePairs.add(new BasicNameValuePair("nombreActividad", params[3]));
+                nameValuePairs.add(new BasicNameValuePair("descripcion", params[4]));
+                nameValuePairs.add(new BasicNameValuePair("fecha_hora_actividad", params[5]));
+
+                httpPost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
+                httpClient.execute(httpPost);
+                resul = true;
+            }
+            catch (UnsupportedEncodingException ex)
+            {
+                resul = false;
+                ex.printStackTrace();
+            }catch (ClientProtocolException ex)
+            {
+                resul = false;
+                ex.printStackTrace();
+            }catch (IOException ex)
+            {
+                resul = false;
+                ex.printStackTrace();
+            }catch(Exception ex)
+            {
+                Log.e("ServicioRest","Error!", ex);
+                resul = false;
+            }
+
+            return resul;
+        }
+
+        protected void onPostExecute(Boolean result) {
+
+            if (result)
+            {
+                Toast.makeText(getApplication(), "Tus cambios se han guardado exitosamente", Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(getApplication(), DashboardActivity.class);
+                startActivity(intent);
+            }
+            else
+            {
+                Toast.makeText(getApplication(), "Error al guardar los cambios, verifique sus datos", Toast.LENGTH_LONG).show();
+                btnGuardarCambios.setEnabled(true);
+            }
+        }
+    }
+
+    private class TareaWSEstatusAct extends AsyncTask<String,Integer,Boolean> {
+
+        String estatus;
+        protected Boolean doInBackground(String... params) {
+
+            estatus = params[1];
+            boolean resul = true;
+
+            try
+            {
+                HttpClient httpClient;
+                List<NameValuePair> nameValuePairs;
+                HttpPost httpPost;
+                httpClient = new DefaultHttpClient();
+
+                httpPost = new HttpPost("http://netgreen.org.mx/ws/modificar_actividad.php");
+                nameValuePairs = new ArrayList<NameValuePair>(7 );
+                nameValuePairs.add(new BasicNameValuePair("idActividad", params[0]));
+                nameValuePairs.add(new BasicNameValuePair("estatus",params[1]));
+                httpPost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
+                httpClient.execute(httpPost);
+                resul = true;
+            }
+            catch (UnsupportedEncodingException ex)
+            {
+                resul = false;
+                ex.printStackTrace();
+            }catch (ClientProtocolException ex)
+            {
+                resul = false;
+                ex.printStackTrace();
+            }catch (IOException ex)
+            {
+                resul = false;
+                ex.printStackTrace();
+            }catch(Exception ex)
+            {
+                Log.e("ServicioRest","Error!", ex);
+                resul = false;
+            }
+
+            return resul;
+        }
+
+        protected void onPostExecute(Boolean result) {
+
+            if (result)
+            {
+                if(estatus.equals("completada")) {
+                    Toast.makeText(getApplication(), "Tu actividad ha sido concluida!! :D", Toast.LENGTH_LONG).show();
+                }
+                else {
+                    Toast.makeText(getApplication(), "Tu actividad ha sido cancelada :(", Toast.LENGTH_LONG).show();
+                }
+
+                Intent intent = new Intent(getApplication(), PerfilActivity.class);
+                startActivity(intent);
+            }
+            else
+            {
+                Toast.makeText(getApplication(), "Error al validar la actividad", Toast.LENGTH_LONG).show();
+                btnGuardarCambios.setEnabled(true);
+            }
+        }
+    }
+
+    private class TareaWSActualizarPuntos extends AsyncTask<String,Integer,Boolean> {
+
+        protected Boolean doInBackground(String... params) {
+
+            boolean resul = true;
+
+            try
+            {
+                HttpClient httpClient;
+                List<NameValuePair> nameValuePairs;
+                HttpPost httpPost;
+                httpClient = new DefaultHttpClient();
+
+                httpPost = new HttpPost("http://netgreen.org.mx/ws/modificar_usuario.php");
+                nameValuePairs = new ArrayList<NameValuePair>(3);
+                nameValuePairs.add(new BasicNameValuePair("idUsuario", params[0]));
+                nameValuePairs.add(new BasicNameValuePair("puntos", params[1]));
+                nameValuePairs.add(new BasicNameValuePair("accion", params[2]));
+
+                httpPost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
+                httpClient.execute(httpPost);
+                resul = true;
+            }
+            catch (UnsupportedEncodingException ex)
+            {
+                resul = false;
+                ex.printStackTrace();
+            }catch (ClientProtocolException ex)
+            {
+                resul = false;
+                ex.printStackTrace();
+            }catch (IOException ex)
+            {
+                resul = false;
+                ex.printStackTrace();
+            }catch(Exception ex)
+            {
+                Log.e("ServicioRest","Error!", ex);
+                resul = false;
+            }
+
+            return resul;
+        }
+
+        protected void onPostExecute(Boolean result) {
+
+            if (result)
+            {
             }
             else
             {

@@ -92,6 +92,7 @@ public class FragmentPerfilActividades extends Fragment {
         private String fecha;
         private String nombrePublicacion;
         private String descripcion;
+        private String estatus;
         private Bitmap imagen;
 
         protected Boolean doInBackground(String... params) {
@@ -122,6 +123,7 @@ public class FragmentPerfilActividades extends Fragment {
                     fecha  = jsonobject.getString("fecha_hora_creacion");
                     nombrePublicacion = jsonobject.getString("nombrePublicacion");
                     descripcion = jsonobject.getString("descripcion");
+                    estatus = jsonobject.getString("estatus");
                     imagen = BitmapFactory.decodeResource(getContext().getResources(),
                             R.drawable.ic_human_greeting_grey600_48dp);
 
@@ -132,6 +134,7 @@ public class FragmentPerfilActividades extends Fragment {
                     p1.setImagen(imagen);
                     p1.setIdPublicacion(idPublicacion);
                     p1.setTipo(tipoPublicacion);
+                    p1.setEstatus(estatus);
                     publicaciones.add(p1);
                 }
 
@@ -146,21 +149,7 @@ public class FragmentPerfilActividades extends Fragment {
 
             return resul;
         }
-        /*
-        ProgressDialog m_dialog = new ProgressDialog(getContext());
 
-        @Override
-        protected void onPreExecute() {
-            // TODO Auto-generated method stub
-            super.onPreExecute();
-            // initialize the dialog
-            m_dialog.setTitle("Loading...");
-            m_dialog.setMessage("Please wait while loading...");
-            m_dialog.setIndeterminate(true);
-            m_dialog.setCancelable(true);
-            m_dialog.show();
-
-        }*/
         protected void onPostExecute(Boolean result) {
 
             if (result)

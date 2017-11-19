@@ -206,6 +206,8 @@ public class FragmentCrearAct extends Fragment {
                             txtDescripcion.getText().toString(),
                             strFechaPublicacion,
                             strFechaActividad);
+                TareaWSActualizarPuntos tarea2 = new TareaWSActualizarPuntos();
+                tarea2.execute(Integer.toString(intUsuario), "15", "sumar");
             }
         });
 
@@ -389,4 +391,61 @@ public class FragmentCrearAct extends Fragment {
             }
         }
     }
+
+    private class TareaWSActualizarPuntos extends AsyncTask<String,Integer,Boolean> {
+
+        protected Boolean doInBackground(String... params) {
+
+            boolean resul = true;
+
+            try
+            {
+                HttpClient httpClient;
+                List<NameValuePair> nameValuePairs;
+                HttpPost httpPost;
+                httpClient = new DefaultHttpClient();
+
+                httpPost = new HttpPost("http://netgreen.org.mx/ws/modificar_usuario.php");
+                nameValuePairs = new ArrayList<NameValuePair>(3);
+                nameValuePairs.add(new BasicNameValuePair("idUsuario", params[0]));
+                nameValuePairs.add(new BasicNameValuePair("puntos", params[1]));
+                nameValuePairs.add(new BasicNameValuePair("accion", params[2]));
+
+                httpPost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
+                httpClient.execute(httpPost);
+                resul = true;
+            }
+            catch (UnsupportedEncodingException ex)
+            {
+                resul = false;
+                ex.printStackTrace();
+            }catch (ClientProtocolException ex)
+            {
+                resul = false;
+                ex.printStackTrace();
+            }catch (IOException ex)
+            {
+                resul = false;
+                ex.printStackTrace();
+            }catch(Exception ex)
+            {
+                Log.e("ServicioRest","Error!", ex);
+                resul = false;
+            }
+
+            return resul;
+        }
+
+        protected void onPostExecute(Boolean result) {
+
+            if (result)
+            {
+            }
+            else
+            {
+
+            }
+        }
+    }
+
 }

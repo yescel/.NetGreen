@@ -18,6 +18,24 @@ public class  Inicio {
     private String tipo;
     private Bitmap imagen;
     private int idUsuario;
+    private String estatus;
+    private String verMas;
+
+    public String getVerMas() {
+        return verMas;
+    }
+
+    public void setVerMas(String verMas) {
+        this.verMas = verMas;
+    }
+
+    public String getEstatus() {
+        return estatus;
+    }
+
+    public void setEstatus(String estatus) {
+        this.estatus = estatus;
+    }
 
     public int getIdUsuario() {
         return idUsuario;

@@ -3,6 +3,7 @@ package com.tallerandroid.netgreen;
 import android.app.ProgressDialog;
 import android.content.ContentValues;
 import android.content.Intent;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -16,12 +17,22 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
+import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
 import org.json.JSONArray;
 import org.json.JSONObject;
+
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -35,6 +46,9 @@ public class LoginActivity extends AppCompatActivity {
     private static final int REQUEST_SIGNUP = 0;
 
     private SQLiteDatabase db;
+
+    int intUsuario;
+    private String nuevo;
 
 
     @InjectView(R.id.etCorreoUsuario_Ajustesl)
@@ -60,6 +74,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 login();
+
 
             }
         });
@@ -132,6 +147,23 @@ public class LoginActivity extends AppCompatActivity {
 
     public void onLoginSuccess() {
         _loginButton.setEnabled(true);
+        UsuarioLogueadoSQLiteHelper usdbh = new UsuarioLogueadoSQLiteHelper(this, "DBUsuario", null, 1);
+        db = usdbh.getWritableDatabase();
+
+        Cursor c = db.rawQuery("SELECT idUsuario FROM Usuario", null);
+        if (c.moveToFirst()) {
+            intUsuario = c.getInt(0);
+        }
+
+        if(nuevo.equals("1")) {
+            TareaWSInsertarImagenUsuario tarea2 = new TareaWSInsertarImagenUsuario();
+            tarea2.execute(Integer.toString(intUsuario));
+
+            //Cambiar el usuario despues de la introduccion a la app
+            TareaWSActualizarUsuarioN tarea3 = new TareaWSActualizarUsuarioN();
+            tarea3.execute(Integer.toString(intUsuario), "0");
+        }
+
         Intent mainIntent = new Intent().setClass(this, DashboardActivity.class);
         startActivity(mainIntent);
     }
@@ -196,6 +228,8 @@ public class LoginActivity extends AppCompatActivity {
                     idUsuario = jsonobject.getInt("idUsuario");
                     correoUsu    = jsonobject.getString("correo");
                     passwordUsu  = jsonobject.getString("passwd");
+                    nuevo = jsonobject.getString("nuevo");
+
                 }
 
             }
@@ -230,6 +264,116 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
+    private class TareaWSInsertarImagenUsuario extends AsyncTask<String,Integer,Boolean> {
+
+        protected Boolean doInBackground(String... params) {
+
+            boolean resul = true;
+
+            try
+            {
+                HttpClient httpClient;
+                List<NameValuePair> nameValuePairs;
+                HttpPost httpPost;
+                httpClient = new DefaultHttpClient();
+
+                httpPost = new HttpPost("http://netgreen.org.mx/ws/insertar_imagen.php");
+                nameValuePairs = new ArrayList<NameValuePair>(5);
+                nameValuePairs.add(new BasicNameValuePair("descripcion", "img"));
+                nameValuePairs.add(new BasicNameValuePair("idUsuario",params[0]));
+                nameValuePairs.add(new BasicNameValuePair("tipo", "Perfil"));
+
+                httpPost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
+                httpClient.execute(httpPost);
+                resul = true;
+            }
+            catch (UnsupportedEncodingException ex)
+            {
+                resul = false;
+                ex.printStackTrace();
+            }catch (ClientProtocolException ex)
+            {
+                resul = false;
+                ex.printStackTrace();
+            }catch (IOException ex)
+            {
+                resul = false;
+                ex.printStackTrace();
+            }catch(Exception ex)
+            {
+                Log.e("ServicioRest","Error!", ex);
+                resul = false;
+            }
+
+            return resul;
+        }
+
+        protected void onPostExecute(Boolean result) {
+
+            if (result)
+            {
+            }
+            else
+            {
+            }
+        }
+    }
+
+    private class TareaWSActualizarUsuarioN extends AsyncTask<String,Integer,Boolean> {
+
+        protected Boolean doInBackground(String... params) {
+
+            boolean resul = true;
+
+            try
+            {
+                HttpClient httpClient;
+                List<NameValuePair> nameValuePairs;
+                HttpPost httpPost;
+                httpClient = new DefaultHttpClient();
+
+                httpPost = new HttpPost("http://netgreen.org.mx/ws/modificar_usuario.php");
+                nameValuePairs = new ArrayList<NameValuePair>(2);
+                nameValuePairs.add(new BasicNameValuePair("idUsuario", params[0]));
+                nameValuePairs.add(new BasicNameValuePair("nuevo", params[1]));
+
+
+                httpPost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
+                httpClient.execute(httpPost);
+                resul = true;
+            }
+            catch (UnsupportedEncodingException ex)
+            {
+                resul = false;
+                ex.printStackTrace();
+            }catch (ClientProtocolException ex)
+            {
+                resul = false;
+                ex.printStackTrace();
+            }catch (IOException ex)
+            {
+                resul = false;
+                ex.printStackTrace();
+            }catch(Exception ex)
+            {
+                Log.e("ServicioRest","Error!", ex);
+                resul = false;
+            }
+
+            return resul;
+        }
+
+        protected void onPostExecute(Boolean result) {
+
+            if (result)
+            {
+            }
+            else
+            {
+
+            }
+        }
+    }
 
 
 }

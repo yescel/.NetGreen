@@ -70,7 +70,7 @@ public class RegistrarActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                TareaWSInsertar tarea = new TareaWSInsertar();
+                TareaWSInsertarUsuario tarea = new TareaWSInsertarUsuario();
                 if(!txtPassword.getText().toString().equals(txtPasswordR.getText().toString()))
                 {
                     Toast.makeText(getBaseContext(), "El password no coincide", Toast.LENGTH_LONG).show();
@@ -96,7 +96,7 @@ public class RegistrarActivity extends AppCompatActivity {
     }
 
 
-    private class TareaWSInsertar extends AsyncTask<String,Integer,Boolean> {
+    private class TareaWSInsertarUsuario extends AsyncTask<String,Integer,Boolean> {
 
         protected Boolean doInBackground(String... params) {
 

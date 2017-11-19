@@ -34,6 +34,7 @@ import org.apache.http.util.EntityUtils;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
@@ -92,6 +93,25 @@ public class AjustesCuentaActivity extends FragmentActivity {
 
         btnGuardarCambios.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                byte[] blob;
+                String imagen ="";
+                ByteArrayOutputStream baos;
+                if(imageBitmap != null) {
+                    ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                    imageBitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
+                    byte[] byteArray = stream.toByteArray();
+                    imagen = Base64.encodeToString(byteArray, Base64.DEFAULT);
+                    imagen = imagen.replaceAll("\n", "");
+
+                }
+                else
+                {
+                    ivPerfil.buildDrawingCache();
+                    imageBitmap = ivPerfil.getDrawingCache();
+                    baos = new ByteArrayOutputStream(20480);
+                    imageBitmap.compress(Bitmap.CompressFormat.PNG, 0, baos);
+                    blob = baos.toByteArray();
+                }
                 if(!etPass.getText().toString().equals(etCambiarPass.getText().toString()))
                 {
                     Toast.makeText(getBaseContext(), "El password no coincide", Toast.LENGTH_LONG).show();
@@ -104,6 +124,13 @@ public class AjustesCuentaActivity extends FragmentActivity {
                             etNombreUsuario.getText().toString(),
                             etCorreo.getText().toString(),
                             etPass.getText().toString());
+
+
+                    TareaWSActualizarImagenUsuario tarea2 = new TareaWSActualizarImagenUsuario();
+                    tarea2.execute(
+                            Integer.toString(intUsuario),
+                            imagen,
+                            "Perfil");
                 }
             }
         });
@@ -194,6 +221,68 @@ public class AjustesCuentaActivity extends FragmentActivity {
             }
         }
     }
+
+    private class TareaWSActualizarImagenUsuario extends AsyncTask<String,Integer,Boolean> {
+
+        protected Boolean doInBackground(String... params) {
+
+            boolean resul = true;
+
+            try
+            {
+                HttpClient httpClient;
+                List<NameValuePair> nameValuePairs;
+                HttpPost httpPost;
+                httpClient = new DefaultHttpClient();
+
+                httpPost = new HttpPost("http://netgreen.org.mx/ws/modificar_imagen.php");
+                nameValuePairs = new ArrayList<NameValuePair>(3);
+                nameValuePairs.add(new BasicNameValuePair("idUsuario", params[0]));
+                nameValuePairs.add(new BasicNameValuePair("imagen", params[1]));
+                nameValuePairs.add(new BasicNameValuePair("tipo",params[2]));
+
+                httpPost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
+                httpClient.execute(httpPost);
+                resul = true;
+            }
+            catch (UnsupportedEncodingException ex)
+            {
+                resul = false;
+                ex.printStackTrace();
+            }catch (ClientProtocolException ex)
+            {
+                resul = false;
+                ex.printStackTrace();
+            }catch (IOException ex)
+            {
+                resul = false;
+                ex.printStackTrace();
+            }catch(Exception ex)
+            {
+                Log.e("ServicioRest","Error!", ex);
+                resul = false;
+            }
+
+            return resul;
+        }
+
+        protected void onPostExecute(Boolean result) {
+
+            if (result)
+            {
+                Toast.makeText(getApplication(), "Cambios guardados", Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(getApplication(), AjustesCuentaActivity.class);
+                startActivity(intent);
+
+            }
+            else
+            {
+                Toast.makeText(getApplication(), "Verifique sus datos", Toast.LENGTH_LONG).show();
+                btnGuardarCambios.setEnabled(true);
+            }
+        }
+    }
+
 
     private class TareaWSCargarUsuarioPerfil extends AsyncTask<String,Integer,Boolean> {
         protected Boolean doInBackground(String... params) {

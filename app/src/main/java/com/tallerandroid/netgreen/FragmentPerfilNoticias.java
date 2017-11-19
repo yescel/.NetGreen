@@ -32,8 +32,8 @@ import java.util.ArrayList;
  */
 
 public class FragmentPerfilNoticias extends Fragment {
-    public static final String ID_ACTIVIDAD = "com.tallerandroid.netgreen.ID_ACTIVIDAD";
-    public static final String TIPO_ACTIVIDAD = "com.tallerandroid.netgreen.TIPO_ACTIVIDAD";
+    public static final String ID_NOTICIA = "com.tallerandroid.netgreen.ID_ACTIVIDAD";
+    public static final String TIPO_NOTICIA = "com.tallerandroid.netgreen.TIPO_ACTIVIDAD";
 
     ListView lvPublicaciones;
     AdaptadorListaInicio adaptadorLista;
@@ -58,7 +58,6 @@ public class FragmentPerfilNoticias extends Fragment {
 
         publicaciones = new ArrayList<>();
         lvPublicaciones = (ListView) getView().findViewById(R.id.lvNoticias_Perfil);
-        //lvPublicaciones.setEmptyView(getView().findViewById(R.id.emptyListView_perfil_noticias));
         adaptadorLista = new AdaptadorListaInicio(getActivity(), publicaciones);
 
         UsuarioLogueadoSQLiteHelper usdbh = new UsuarioLogueadoSQLiteHelper(getContext(), "DBUsuario", null, 1);
@@ -80,8 +79,8 @@ public class FragmentPerfilNoticias extends Fragment {
                 String txtTipo = tvTipo.getText().toString();
 
                 Intent intent = new Intent(getActivity(), DetalleItemMiNoticiaActivity.class);
-                intent.putExtra(ID_ACTIVIDAD, txtId);
-                intent.putExtra(TIPO_ACTIVIDAD, txtTipo);
+                intent.putExtra(ID_NOTICIA, txtId);
+                intent.putExtra(TIPO_NOTICIA, txtTipo);
                 startActivity(intent);
 
             }

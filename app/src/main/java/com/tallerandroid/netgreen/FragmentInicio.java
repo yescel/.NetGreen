@@ -20,6 +20,10 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.app.SearchManager;
+import android.widget.SearchView;
+import android.widget.SearchView.OnQueryTextListener;
+import android.support.v7.widget.Toolbar;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -35,7 +39,7 @@ import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class FragmentInicio extends Fragment {
+public class FragmentInicio extends Fragment{
     public static final String ID_ACTIVIDAD = "com.tallerandroid.netgreen.ID_ACTIVIDAD";
     public static final String TIPO_ACTIVIDAD = "com.tallerandroid.netgreen.TIPO_ACTIVIDAD";
 
@@ -49,7 +53,7 @@ public class FragmentInicio extends Fragment {
     private SQLiteDatabase db;
     String[] categorias;
     String[] subcategorias;
-
+    SearchView searchView;
 
 
     public static FragmentInicio newInstance() {
@@ -68,7 +72,21 @@ public class FragmentInicio extends Fragment {
     }
     public void onActivityCreated(Bundle state) {
         super.onActivityCreated(state);
+        searchView = (SearchView) getActivity().findViewById(R.id.search_BuscarPublicacion);
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
 
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                String text = newText;
+                adaptadorLista.filter(text);
+                return false;
+            }
+        });
         spinnerCategorias = (Spinner) getActivity().findViewById(R.id.spinnerCategorias_Inicio);
         TareaWSCargarSpinnerCat cargarCat = new TareaWSCargarSpinnerCat();
         cargarCat.execute(spinnerCategorias.toString());
@@ -107,6 +125,7 @@ public class FragmentInicio extends Fragment {
             }
         });
     }
+
 
 
     private class TareaWSCargarInicio extends AsyncTask<String,Integer,Boolean> {
@@ -156,6 +175,7 @@ public class FragmentInicio extends Fragment {
                     p1.setImagen(imagen);
                     p1.setIdPublicacion(idPublicacion);
                     p1.setTipo(tipoPublicacion);
+                    p1.setVerMas("Ver más...");
                     publicaciones.add(p1);
                 }
 

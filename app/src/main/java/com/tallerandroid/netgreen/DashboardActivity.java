@@ -1,18 +1,43 @@
 package com.tallerandroid.netgreen;
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
+import android.os.AsyncTask;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+ import android.app.SearchManager;
+import android.widget.SearchView;
+import android.widget.SearchView.OnQueryTextListener;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
+
+import org.apache.http.NameValuePair;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
+
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
+import java.util.List;
+
+import static com.tallerandroid.netgreen.R.id.textView;
 
 public class DashboardActivity extends AppCompatActivity {
+    public static final String TEXTO_SEARCH = "com.tallerandroid.netgreen.ID_ACTIVIDAD";
 
     private static final Integer[] Icons = new Integer[]{
             R.drawable.ic_inicio,
@@ -24,6 +49,10 @@ public class DashboardActivity extends AppCompatActivity {
 
     private TabLayout tabLayout;
     private ViewPager viewPager;
+    private SearchView searchView;
+
+    private SQLiteDatabase db;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,14 +70,21 @@ public class DashboardActivity extends AppCompatActivity {
         tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
         tabLayout.setupWithViewPager(viewPager);
         setupTabIcons();
-       // TabLayout.Tab tabInicio = tabLayout.getTabAt(ic_user);
-       // tabInicio.setIcon(R.drawable.ic_user);
+
+       // searchView = (SearchView) findViewById(R.id.search_BuscarPublicacion);
+
+        //final SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
+        //permite modificar el hint que el EditText muestra por defecto
+        //searchView.setQueryHint(getText(R.string.search));
+
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         //Alternativa 1
         getMenuInflater().inflate(R.menu.main_menu, menu);
+
+
         return true;
     }
 
@@ -116,4 +152,7 @@ public class DashboardActivity extends AppCompatActivity {
             }
         });
     }
+
+
+
 }
