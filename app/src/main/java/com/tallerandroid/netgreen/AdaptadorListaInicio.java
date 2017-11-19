@@ -27,16 +27,19 @@ public class AdaptadorListaInicio extends ArrayAdapter {
         super(context, R.layout.item_listview_inicio, publicacionesLista);
         this.activity = context;
         this.publicacionesLista = publicacionesLista;
-        //this.publicacionesArrayLista = new ArrayList<Inicio>();
-        //this.publicacionesArrayLista.addAll(publicacionesLista);
+        this.publicacionesArrayLista = new ArrayList<Inicio>();
+        this.publicacionesArrayLista.addAll(publicacionesLista);
     }
 
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
 
         ViewHolder vh = null;
-        this.publicacionesArrayLista = new ArrayList<Inicio>();
-        this.publicacionesArrayLista.addAll(publicacionesLista);
+
+        //this.publicacionesArrayLista = new ArrayList<Inicio>();
+        if(publicacionesArrayLista.size() == 0) {
+            this.publicacionesArrayLista.addAll(publicacionesLista);
+        }
 
         if (convertView == null) {
             LayoutInflater inflater = activity.getLayoutInflater();
@@ -58,15 +61,15 @@ public class AdaptadorListaInicio extends ArrayAdapter {
         } else {
             vh = (ViewHolder) convertView.getTag();
         }
-        vh.mImageViewUsuario.setImageBitmap(publicacionesArrayLista.get(position).getImagen());
-        vh.mNomUsuario.setText(publicacionesArrayLista.get(position).getNomUsuario());
-        vh.mFechaPublicacion.setText(publicacionesArrayLista.get(position).getFechaPublicacion());
-        vh.mNomPublicacion.setText(publicacionesArrayLista.get(position).getNomPublicacion());
-        vh.mDescripcion.setText(publicacionesArrayLista.get(position).getDescripcion());
-        vh.mIdPublicacion.setText(publicacionesArrayLista.get(position).getIdPublicacion());
-        vh.mTipoPublicacion.setText(publicacionesArrayLista.get(position).getTipo());
-        vh.mVerMas.setText(publicacionesArrayLista.get(position).getVerMas());
-        vh.mEstatus.setText(publicacionesArrayLista.get(position).getEstatus());
+        vh.mImageViewUsuario.setImageBitmap(publicacionesLista.get(position).getImagen());
+        vh.mNomUsuario.setText(publicacionesLista.get(position).getNomUsuario());
+        vh.mFechaPublicacion.setText(publicacionesLista.get(position).getFechaPublicacion());
+        vh.mNomPublicacion.setText(publicacionesLista.get(position).getNomPublicacion());
+        vh.mDescripcion.setText(publicacionesLista.get(position).getDescripcion());
+        vh.mIdPublicacion.setText(publicacionesLista.get(position).getIdPublicacion());
+        vh.mTipoPublicacion.setText(publicacionesLista.get(position).getTipo());
+        vh.mVerMas.setText(publicacionesLista.get(position).getVerMas());
+        vh.mEstatus.setText(publicacionesLista.get(position).getEstatus());
 
         if(publicacionesArrayLista.get(position).getEstatus()!= null)
         {
