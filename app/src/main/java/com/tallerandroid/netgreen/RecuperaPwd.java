@@ -18,8 +18,6 @@ public class RecuperaPwd extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recuperapwd);
 
-
-
         /*
         intent = (TextView) findViewById(R.id.link_login);
         intent.setOnClickListener(new View.OnClickListener() {

@@ -1,6 +1,7 @@
 package com.tallerandroid.netgreen;
 
 
+import android.content.ClipData;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
@@ -87,29 +88,13 @@ public class FragmentInicio extends Fragment{
                 return false;
             }
         });
-        spinnerCategorias = (Spinner) getActivity().findViewById(R.id.spinnerCategorias_Inicio);
-        TareaWSCargarSpinnerCat cargarCat = new TareaWSCargarSpinnerCat();
-        cargarCat.execute(spinnerCategorias.toString());
-        spinnerCategorias.setOnItemSelectedListener(
-                new AdapterView.OnItemSelectedListener() {
-                    public void onItemSelected(AdapterView<?> parent, android.view.View v, int position, long id) {
-                        spinnerSubCategorias = (Spinner) getActivity().findViewById(R.id.spinnerSubCategorias_Inicio);
-
-                        TareaWSCargarSpinnerSubCat cargarSubcat = new TareaWSCargarSpinnerSubCat();
-                        cargarSubcat.execute(Integer.toString(position));
-                    }
-                    public void onNothingSelected(AdapterView<?> parent) {
-                    }
-                });
-
-
         publicaciones = new ArrayList<>();
         lvPublicaciones = (ListView) getView().findViewById(R.id.lvInicio);
         lvPublicaciones.setEmptyView(getView().findViewById(R.id.loadListView_inicio));
         adaptadorLista = new AdaptadorListaInicio(getActivity(), publicaciones);
 
         TareaWSCargarInicio tarea = new TareaWSCargarInicio();
-        tarea.execute(spinnerCategorias.toString());
+        tarea.execute("");
 
         lvPublicaciones.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> a, View v, int position, long id) {
@@ -124,6 +109,34 @@ public class FragmentInicio extends Fragment{
                 startActivity(intent);
             }
         });
+
+        spinnerCategorias = (Spinner) getActivity().findViewById(R.id.spinnerCategorias_Inicio);
+        TareaWSCargarSpinnerCat cargarCat = new TareaWSCargarSpinnerCat();
+        cargarCat.execute(spinnerCategorias.toString());
+        spinnerSubCategorias = (Spinner) getActivity().findViewById(R.id.spinnerSubCategorias_Inicio);
+        spinnerCategorias.setOnItemSelectedListener(
+                new AdapterView.OnItemSelectedListener() {
+                    public void onItemSelected(AdapterView<?> parent, android.view.View v, int position, long id) {
+                        adaptadorLista.filterCategoria(spinnerCategorias.getSelectedItem().toString());
+                        TareaWSCargarSpinnerSubCat cargarSubcat = new TareaWSCargarSpinnerSubCat();
+                        cargarSubcat.execute(Integer.toString(position));
+                    }
+                    public void onNothingSelected(AdapterView<?> parent) {
+                    }
+                });
+        spinnerSubCategorias.setOnItemSelectedListener(
+                new AdapterView.OnItemSelectedListener() {
+                    public void onItemSelected(AdapterView<?> parent, android.view.View v, int position, long id) {
+                        adaptadorLista.filterSubcategoria(
+                                spinnerSubCategorias.getSelectedItem().toString(),
+                                spinnerCategorias.getSelectedItem().toString());
+                    }
+                    public void onNothingSelected(AdapterView<?> parent) {
+                    }
+                });
+
+
+
     }
 
 
@@ -131,6 +144,8 @@ public class FragmentInicio extends Fragment{
     private class TareaWSCargarInicio extends AsyncTask<String,Integer,Boolean> {
 
         private int id;
+        private String cat;
+        private String subcat;
         private String tipoPublicacion;
         private String usuario;
         private String fecha;
@@ -159,6 +174,8 @@ public class FragmentInicio extends Fragment{
                 for(int i=0; i < respJSON.length(); i++) {
                     JSONObject jsonobject = respJSON.getJSONObject(i);
                     id = jsonobject.getInt("idPublicacion");
+                    cat = jsonobject.getString("nombreCat");
+                    subcat = jsonobject.getString("nombreSubcat");
                     tipoPublicacion = jsonobject.getString("tipo");
                     usuario    = jsonobject.getString("nombre");
                     fecha  = jsonobject.getString("fecha_hora_creacion");
@@ -172,9 +189,18 @@ public class FragmentInicio extends Fragment{
                     p1.setFechaPublicacion(fecha);
                     p1.setNomPublicacion(nombrePublicacion);
                     p1.setDescripcion(descripcion);
-                    p1.setImagen(imagen);
+                    if(imagen!=null) {
+                        p1.setImagen(imagen);
+                    }
+                    else {
+                        Bitmap ic_user = BitmapFactory.decodeResource(getContext().getResources(),
+                                R.drawable.ic_user);
+                        p1.setImagen(ic_user);
+                    }
                     p1.setIdPublicacion(idPublicacion);
                     p1.setTipo(tipoPublicacion);
+                    p1.setCategoria(cat);
+                    p1.setSubcategoria(subcat);
                     p1.setVerMas("Ver más...");
                     publicaciones.add(p1);
                 }

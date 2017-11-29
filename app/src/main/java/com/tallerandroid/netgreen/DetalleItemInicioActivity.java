@@ -558,7 +558,14 @@ public class DetalleItemInicioActivity extends AppCompatActivity {
 
                     mComentario = new Comentario();
                     mComentario.setComentario(comentario);
-                    mComentario.setImagen(imagen);
+                     if(imagen!=null) {
+                         mComentario.setImagen(imagen);
+                     }
+                     else {
+                         Bitmap ic_user = BitmapFactory.decodeResource(getApplicationContext().getResources(),
+                                 R.drawable.ic_user);
+                         mComentario.setImagen(ic_user);
+                     }
                     mComentario.setFecha(fecha);
 
                     comentarios.add(mComentario);

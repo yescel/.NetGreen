@@ -27,22 +27,12 @@
                 android:text="Agregar Fotos"
                 android:textColor="@color/cardview_light_background" />
 
-            <android.support.v7.widget.CardView
-                android:id="@+id/card2"
+            <GridView
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:layout_below="@+id/btnAgregarFotos"
-                android:layout_marginTop="16dp">
-
-                <ImageView
-                    android:id="@+id/imageView2"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginTop="16dp"
-                    app:srcCompat="@mipmap/logo" />
-            </android.support.v7.widget.CardView>
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/btnAgregarFotos" />
 
 
         </RelativeLayout>

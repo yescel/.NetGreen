@@ -103,20 +103,28 @@ public class FragmentRanking extends Fragment {
                     p1 = new Ranking();
                     p1.setNomUsuario(usuario);
                     p1.setPuntos(puntos);
-                    p1.setImagen(imagen);
+                    if(imagen!=null) {
+                        p1.setImagen(imagen);
+                    }
+                    else {
+                        Bitmap ic_user = BitmapFactory.decodeResource(getContext().getResources(),
+                                R.drawable.ic_user);
+                        p1.setImagen(ic_user);
+                    }
+
                     switch (contadorLugares)
                     {
                         case 1:
-                            p1.setIvInsignida(getResources().getDrawable(R.drawable.oro));
+                            p1.setIvInsignida(getResources().getDrawable(R.drawable.primer_lugar));
                             break;
                         case 2:
-                            p1.setIvInsignida(getResources().getDrawable(R.drawable.plata));
+                            p1.setIvInsignida(getResources().getDrawable(R.drawable.segundo_lugar));
                             break;
                         case 3:
-                            p1.setIvInsignida(getResources().getDrawable(R.drawable.bronce));
+                            p1.setIvInsignida(getResources().getDrawable(R.drawable.tercer_lugar));
                             break;
                         default:
-                            p1.setIvInsignida(getResources().getDrawable(R.drawable.medalla));
+                            p1.setIvInsignida(getResources().getDrawable(R.drawable.todos));
                             break;
                     }
                     aRanking.add(p1);

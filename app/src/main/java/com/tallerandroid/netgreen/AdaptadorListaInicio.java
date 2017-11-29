@@ -36,7 +36,6 @@ public class AdaptadorListaInicio extends ArrayAdapter {
 
         ViewHolder vh = null;
 
-        //this.publicacionesArrayLista = new ArrayList<Inicio>();
         if(publicacionesArrayLista.size() == 0) {
             this.publicacionesArrayLista.addAll(publicacionesLista);
         }
@@ -119,6 +118,39 @@ public class AdaptadorListaInicio extends ArrayAdapter {
         } else {
             for (Inicio wp : publicacionesArrayLista) {
                 if (wp.getNomPublicacion().toLowerCase(Locale.getDefault()).contains(charText)) {
+                    publicacionesLista.add(wp);
+                }
+            }
+        }
+        notifyDataSetChanged();
+    }
+
+    public void filterCategoria(String categoria) {
+        //charText = charText.toLowerCase(Locale.getDefault());
+        publicacionesLista.clear();
+       if (categoria.equals("Todas")) {
+           publicacionesLista.addAll(publicacionesArrayLista);
+       } else {
+            for (Inicio wp : publicacionesArrayLista) {
+                if (wp.getCategoria().contains(categoria)) {
+                    publicacionesLista.add(wp);
+                }
+          }
+        }
+        notifyDataSetChanged();
+    }
+    public void filterSubcategoria(String subcategoria, String categoria) {
+        //charText = charText.toLowerCase(Locale.getDefault());
+        if (subcategoria.equals("Todas")) {
+            for (Inicio wp : publicacionesArrayLista) {
+                if (wp.getCategoria().contains(categoria)) {
+                    publicacionesLista.add(wp);
+                }
+            }
+        } else {
+            publicacionesLista.clear();
+            for (Inicio wp : publicacionesArrayLista) {
+                if (wp.getSubcategoria().contains(subcategoria)) {
                     publicacionesLista.add(wp);
                 }
             }

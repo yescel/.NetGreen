@@ -93,9 +93,9 @@ public class AjustesCuentaActivity extends FragmentActivity {
 
         btnGuardarCambios.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                byte[] blob;
+                //byte[] blob;
                 String imagen ="";
-                ByteArrayOutputStream baos;
+                //ByteArrayOutputStream baos;
                 if(imageBitmap != null) {
                     ByteArrayOutputStream stream = new ByteArrayOutputStream();
                     imageBitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
@@ -106,11 +106,13 @@ public class AjustesCuentaActivity extends FragmentActivity {
                 }
                 else
                 {
+                    ByteArrayOutputStream stream = new ByteArrayOutputStream();
                     ivPerfil.buildDrawingCache();
                     imageBitmap = ivPerfil.getDrawingCache();
-                    baos = new ByteArrayOutputStream(20480);
-                    imageBitmap.compress(Bitmap.CompressFormat.PNG, 0, baos);
-                    blob = baos.toByteArray();
+                    imageBitmap.compress(Bitmap.CompressFormat.PNG,100,stream);
+                    byte[] byteArray = stream.toByteArray();
+                    imagen = Base64.encodeToString(byteArray, Base64.DEFAULT);
+                    imagen = imagen.replaceAll("\n", "");
                 }
                 if(!etPass.getText().toString().equals(etCambiarPass.getText().toString()))
                 {
@@ -173,12 +175,14 @@ public class AjustesCuentaActivity extends FragmentActivity {
                 httpClient = new DefaultHttpClient();
 
                 httpPost = new HttpPost("http://netgreen.org.mx/ws/modificar_usuario.php");
-                nameValuePairs = new ArrayList<NameValuePair>(5);
+                nameValuePairs = new ArrayList<NameValuePair>(6);
                 nameValuePairs.add(new BasicNameValuePair("idUsuario", params[0]));
                 nameValuePairs.add(new BasicNameValuePair("nombre", params[1]));
                 nameValuePairs.add(new BasicNameValuePair("usuario",params[2]));
                 nameValuePairs.add(new BasicNameValuePair("correo", params[3]));
                 nameValuePairs.add(new BasicNameValuePair("passwd", params[4]));
+                nameValuePairs.add(new BasicNameValuePair("tipoUsuario", "B"));
+
 
                 httpPost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
                 httpClient.execute(httpPost);
@@ -283,7 +287,6 @@ public class AjustesCuentaActivity extends FragmentActivity {
         }
     }
 
-
     private class TareaWSCargarUsuarioPerfil extends AsyncTask<String,Integer,Boolean> {
         protected Boolean doInBackground(String... params) {
             boolean resul = true;
@@ -330,7 +333,11 @@ public class AjustesCuentaActivity extends FragmentActivity {
                     etNombreCompleto.setText(nombreCompleto);
                     etNombreUsuario.setText(nombreUsuario);
                     etCorreo.setText(correo);
-                    ivPerfil.setImageBitmap(imagen);
+                    if(imagen != null)
+                        ivPerfil.setImageBitmap(imagen);
+                    else
+                        ivPerfil.setImageDrawable(getResources().getDrawable(R.drawable.ic_user));
+
                 }
                 catch (Exception ex)
                 {

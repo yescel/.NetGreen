@@ -20,6 +20,24 @@ public class  Inicio {
     private int idUsuario;
     private String estatus;
     private String verMas;
+    private String categoria;
+    private String subcategoria;
+
+    public String getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(String categoria) {
+        this.categoria = categoria;
+    }
+
+    public String getSubcategoria() {
+        return subcategoria;
+    }
+
+    public void setSubcategoria(String subcategoria) {
+        this.subcategoria = subcategoria;
+    }
 
     public String getVerMas() {
         return verMas;

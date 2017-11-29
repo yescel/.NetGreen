@@ -138,7 +138,13 @@ public class FragmentPerfil extends Fragment {
                         tvNombreEncabezado.setText(usuario);
                         tvNombreUsuario.setText("Usuario: "+usuario);
                     }
-                    ivFotoPerfil.setImageBitmap(imagen);
+                    if(imagen!=null) {
+                        ivFotoPerfil.setImageBitmap(imagen);
+                    }
+                    else {
+                        ivFotoPerfil.setImageDrawable(getResources().getDrawable(R.drawable.ic_user));
+                    }
+
                     tvNombreCompleto.setText("Nombre: "+nombre);
                     if(genero == "Hombre")
                         tvGenero.setText("Género: Hombre");
